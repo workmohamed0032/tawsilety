@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>توصليتي | خدمة توصيل سريعة</title>
+    <!-- خط تجوال العصري -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome المودرن -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --app-bg: #f8fafc;
+            --primary: #0a6847;
+            --primary-dark: #064e3b;
+            --primary-soft: #ecfdf5;
+            --accent-yellow: #f59e0b;
+            --dark-pill: #0f172a;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --border-light: #e2e8f0;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #cbd5e1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* حاوية التطبيق */
+        .app-wrapper {
+            width: 100%;
+            max-width: 440px;
+            background-color: var(--app-bg);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding-bottom: 110px;
+            overflow-x: hidden;
+        }
+
+        @media (min-width: 500px) {
+            .app-wrapper {
+                min-height: 890px;
+                height: 94vh;
+                border-radius: 36px;
+                overflow-y: auto;
+                border: 8px solid #ffffff;
+            }
+        }
+
+        /* الشريط العلوي */
+        .app-header {
+            padding: 16px 20px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-img {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: #fff;
+            border: 1px solid var(--border-light);
+            padding: 2px;
+        }
+
+        .user-text h4 {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .user-text p {
+            font-size: 12px;
+            color: #10b981;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .call-action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: #ecfdf5;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+            border: 1px solid #a7f3d0;
+            transition: 0.2s;
+        }
+
+        .call-action-btn:active {
+            transform: scale(0.92);
+        }
+
+        .screens-container {
+            padding: 14px 16px;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        .screen.active-screen {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* كارت الهيرو الترويجي الراقي */
+        .hero-banner-modern {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 24px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(10, 104, 71, 0.4);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner-modern::after {
+            content: '';
+            position: absolute;
+            left: -30px;
+            bottom: -30px;
+            width: 140px;
+            height: 140px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            flex: 1.2;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero-content h2 {
+            font-size: 23px;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .hero-content p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 14px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-pill {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+
+        .btn-pill-yellow {
+            background-color: var(--accent-yellow);
+            color: #000;
+        }
+
+        .btn-pill-white {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .hero-img-wrap {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-img-wrap img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
+        }
+
+        /* شريط الأقسام الأفقي القابل للشد والتحريك بالسحب */
+        .capsule-wrapper {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .capsule-row {
+            display: flex;
+            gap: 10px;
+            overflow-x: scroll;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 4px 2px 10px 2px;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .capsule-row:active {
+            cursor: grabbing;
+        }
+
+        .capsule-row::-webkit-scrollbar {
+            height: 4px;
+        }
+        .capsule-row::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+
+        .capsule-btn {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 10px 18px;
+            border-radius: 16px;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--text-dark);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+
+        .capsule-btn i {
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .capsule-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(10, 104, 71, 0.3);
+        }
+
+        .capsule-btn.active i {
+            color: var(--white);
+        }
+
+        /* كروت الأقسام الكبيرة والواضحة (Clean Delivery Style) */
+        .section-heading {
+            font-size: 19px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modern-cards-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .modern-card {
+            background: var(--white);
+            border-radius: 22px;
+            border: 1px solid var(--border-light);
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .modern-card:active {
+            transform: scale(0.98);
+        }
+
+        .card-details {
+            flex: 1.2;
+        }
+
+        .card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .tag-food { background: #fef3c7; color: #b45309; }
+        .tag-drinks { background: #fce7f3; color: #be185d; }
+        .tag-med { background: #e0f2fe; color: #0369a1; }
+        .tag-free { background: #dcfce7; color: #15803d; }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .card-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .btn-order-inline {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 10px;
+            font-size: 12.5px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        /* حاوية الصور الكبيرة والواضحة */
+        .card-image-box {
+            flex: 0.9;
+            height: 125px;
+            width: 125px;
+            max-width: 130px;
+            background: #f8fafc;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border: 1px solid #f1f5f9;
+        }
+
+        .card-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            transition: transform 0.3s ease;
+        }
+
+        .modern-card:hover .card-image-box img {
+            transform: scale(1.06);
+        }
+
+        /* كارت تسجيل الأوردر */
+        .form-card-ui {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .input-group {
+            margin-bottom: 14px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 14px;
+            outline: none;
+            background: #f8fafc;
+            transition: 0.2s;
+        }
+
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            border-color: var(--primary);
+            background: #fff;
+        }
+
+        /* قسم تصوير الروشتة بالكاميرا */
+        .prescription-container {
+            display: none;
+            background: #eff6ff;
+            border: 2px dashed #93c5fd;
+            border-radius: 18px;
+            padding: 16px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .camera-trigger-btn {
+            background: #2563eb;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .preview-box {
+            display: none;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .preview-box img {
+            width: 100%;
+            max-height: 180px;
+            object-fit: contain;
+            border-radius: 12px;
+            border: 2px solid #2563eb;
+            background: #000;
+        }
+
+        .btn-remove-pic {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .btn-submit-order {
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            font-size: 16px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(10, 104, 71, 0.3);
+            margin-top: 8px;
+        }
+
+        /* النافذة المنبثقة للروشتة */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            text-align: center;
+            max-width: 360px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+
+        .modal-card i {
+            font-size: 44px;
+            color: #10b981;
+            margin-bottom: 12px;
+        }
+
+        .modal-card h3 {
+            font-size: 19px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .modal-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        /* الشريط السفلي العائم (Dark Pill Modern) */
+        .floating-bottom-bar {
+            position: fixed;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 32px);
+            max-width: 408px;
+            height: 64px;
+            background: var(--dark-pill);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 0 8px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.25);
+            z-index: 999;
+        }
+
+        .nav-item {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 18px;
+            cursor: pointer;
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.25s;
+        }
+
+        .nav-item.active {
+            background: var(--white);
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-wrapper">
+
+        <!-- الهيدر العلوي الأنيق -->
+        <header class="app-header">
+            <div class="user-profile">
+                <img src="logo.png" alt="توصليتي" class="avatar-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+                <div class="user-text">
+                    <h4>توصـليتي <i class="fa-solid fa-motorcycle" style="color: var(--primary);"></i></h4>
+                    <p><i class="fa-solid fa-circle" style="font-size: 8px;"></i> الكابتن جاهز للتوصيل</p>
+                </div>
+            </div>
+
+            <!-- زر اتصال فوري بالدليفري -->
+            <a href="tel:01010322011" class="call-action-btn" title="اتصل فوراً">
+                <i class="fa-solid fa-phone"></i>
+            </a>
+        </header>
+
+        <div class="screens-container">
+
+            <!-- 1. الشاشة الرئيسية -->
+            <div id="screen-home" class="screen active-screen">
+                
+                <!-- كارت الهيرو العصري -->
+                <div class="hero-banner-modern">
+                    <div class="hero-content">
+                        <span class="hero-badge"><i class="fa-solid fa-bolt"></i> توصيل فوري وسريع</span>
+                        <h2>أي طلب فـي بالك.. <br><span>يوصلك فـي دقايق!</span></h2>
+                        <p>مشاويرك، أكلاتك، مشترياتك، وعلاجك لحد باب بيتك.</p>
+                        <div class="hero-btns">
+                            <button class="btn-pill btn-pill-yellow" onclick="goToScreen('order')">
+                                <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                            </button>
+                            <a href="tel:01010322011" class="btn-pill btn-pill-white">
+                                <i class="fa-solid fa-phone"></i> اتصال
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-img-wrap">
+                        <img src="delivery.png" alt="دليفري" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+                    </div>
+                </div>
+
+                <!-- شريط الأقسام الأفقي القابل للسحب والشد (Swipe & Drag) -->
+                <div class="capsule-wrapper">
+                    <div class="capsule-row" id="scrollRow">
+                        <button class="capsule-btn active" onclick="filterCards('all', this)">
+                            <i class="fa-solid fa-layer-group"></i> كل الأقسام
+                        </button>
+                        <button class="capsule-btn" onclick="filterCards('food', this)">
+                            <i class="fa-solid fa-utensils"></i> مأكولات ومطاعم
+                        </button>
+                        <button class="capsule-btn" onclick="filterCards('drinks', this)">
+                            <i class="fa-solid fa-mug-saucer"></i> مشروبات وكافيه
+                        </button>
+                        <button class="capsule-btn" onclick="filterCards('med', this)">
+                            <i class="fa-solid fa-kit-medical"></i> صيدلية وعلاج
+                        </button>
+                        <button class="capsule-btn" onclick="filterCards('free', this)">
+                            <i class="fa-solid fa-box-open"></i> مشاوير وأمانات
+                        </button>
+                    </div>
+                </div>
+
+                <!-- كروت الأقسام ذات الصور الكبيرة والواضحة -->
+                <div class="section-heading">
+                    <span>اختر قسمك واطلب فوراً</span>
+                    <span style="font-size: 13px; color: var(--primary); font-weight: 700; cursor: pointer;" onclick="goToScreen('stores')">المحلات المتاحة</span>
+                </div>
+
+                <div class="modern-cards-list" id="cardsList">
+
+                    <!-- كارت 1: المأكولات (food.png) -->
+                    <div class="modern-card" data-cat="food" onclick="selectCategoryAndOrder('أطعمة ومأكولات (مطاعم)')">
+                        <div class="card-details">
+                            <span class="card-tag tag-food"><i class="fa-solid fa-fire"></i> وجبات ساخنة</span>
+                            <div class="card-title">المطاعم والمأكولات</div>
+                            <div class="card-subtitle">برجر، كريب، مشويات، بيتزا وشعبي من أي مطعم يعجبك.</div>
+                            <button class="btn-order-inline"><i class="fa-brands fa-whatsapp"></i> اطلب الآن</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="food.png" alt="مأكولات" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3075/3075977.png'">
+                        </div>
+                    </div>
+
+                    <!-- كارت 2: الصيدليات والعلاج (pharmacy.png) -->
+                    <div class="modern-card" data-cat="med" onclick="selectCategoryAndOrder('صيدلية وأدوية وعلاج')">
+                        <div class="card-details">
+                            <span class="card-tag tag-med"><i class="fa-solid fa-camera"></i> يدعم تصوير الروشتة</span>
+                            <div class="card-title">صيدليات وعلاج عاجل</div>
+                            <div class="card-subtitle">صور الروشتة أو اكتب اسم الدواء ويوصلك في أسرع وقت.</div>
+                            <button class="btn-order-inline"><i class="fa-solid fa-camera"></i> تصوير واطلب</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="pharmacy.png" alt="أدوية" onerror="this.src='https://cdn-icons-png.flaticon.com/512/883/883407.png'">
+                        </div>
+                    </div>
+
+                    <!-- كارت 3: المشروبات والكافيهات (drinks.png) -->
+                    <div class="modern-card" data-cat="drinks" onclick="selectCategoryAndOrder('مشروبات وكافيهات وعصائر')">
+                        <div class="card-details">
+                            <span class="card-tag tag-drinks"><i class="fa-solid fa-snowflake"></i> فريش وبارد</span>
+                            <div class="card-title">مشروبات وكافيهات</div>
+                            <div class="card-subtitle">عصائر طبيعية، قهوة، اسبريسو ومشروبات منعشة.</div>
+                            <button class="btn-order-inline"><i class="fa-brands fa-whatsapp"></i> اطلب الآن</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="drinks.png" alt="مشروبات" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2405/2405479.png'">
+                        </div>
+                    </div>
+
+                    <!-- كارت 4: مشاوير خاصة وطرود (delivery.png) -->
+                    <div class="modern-card" data-cat="free" onclick="selectCategoryAndOrder('مشوار حر واستلام طرد')">
+                        <div class="card-details">
+                            <span class="card-tag tag-free"><i class="fa-solid fa-box"></i> أمان وسرعة</span>
+                            <div class="card-title">مشاوير وطرود خاصة</div>
+                            <div class="card-subtitle">توصيل أي أمانة أو غرض من باب إلى باب بأمان.</div>
+                            <button class="btn-order-inline"><i class="fa-brands fa-whatsapp"></i> اطلب الكابتن</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="delivery.png" alt="مشوار" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- 2. صفحة الأقسام والمحلات -->
+            <div id="screen-stores" class="screen">
+                <div class="section-heading" style="margin-top: 6px;">
+                    <span>المحلات والأقسام المتاحة</span>
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                    اختر المحل أو القسم الذي تريد الشراء منه وسيتولى الكابتن المهمة فوراً.
+                </p>
+
+                <div class="modern-cards-list">
+                    <div class="modern-card" onclick="selectCategoryAndOrder('مطاعم ومأكولات')">
+                        <div class="card-details">
+                            <span class="card-tag tag-food">مطاعم</span>
+                            <div class="card-title">كل مطاعم منطقتك</div>
+                            <div class="card-subtitle">وجبات سريعة، كريب، بيتزا ومطاعم شعبية.</div>
+                            <button class="btn-order-inline">اطلب الآن</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="food.png" alt="مطاعم" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3075/3075977.png'">
+                        </div>
+                    </div>
+
+                    <div class="modern-card" onclick="selectCategoryAndOrder('صيدلية وأدوية وعلاج')">
+                        <div class="card-details">
+                            <span class="card-tag tag-med">صيدليات</span>
+                            <div class="card-title">صيدليات خدمة 24 ساعة</div>
+                            <div class="card-subtitle">صرف أدوية ومستلزمات رعاية أطفال.</div>
+                            <button class="btn-order-inline">تصوير روشتة</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="pharmacy.png" alt="صيدلية" onerror="this.src='https://cdn-icons-png.flaticon.com/512/883/883407.png'">
+                        </div>
+                    </div>
+
+                    <div class="modern-card" onclick="selectCategoryAndOrder('عصائر وكافيهات')">
+                        <div class="card-details">
+                            <span class="card-tag tag-drinks">كافيهات</span>
+                            <div class="card-title">محلات العصائر والبن</div>
+                            <div class="card-subtitle">عصائر فريش وقهوة مجهزة طازجة.</div>
+                            <button class="btn-order-inline">اطلب الآن</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="drinks.png" alt="عصائر" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2405/2405479.png'">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. شاشة تسجيل الأوردر -->
+            <div id="screen-order" class="screen">
+                <div class="section-heading" style="margin-top: 6px;">
+                    <span>تسجيل طلبك 🛵</span>
+                </div>
+
+                <div class="form-card-ui">
+                    <form onsubmit="handleOrderSubmission(event)">
+                        
+                        <div class="input-group">
+                            <label><i class="fa-solid fa-list" style="color: var(--primary);"></i> اختر القسم:</label>
+                            <select id="selectedCat" onchange="checkCategoryChange(this.value)">
+                                <option value="مأكولات ومطاعم">🍔 مأكولات ومطاعم</option>
+                                <option value="أدوية وعلاج وصيدلية">💊 أدوية وعلاج وصيدلية</option>
+                                <option value="مشروبات وكافيهات">☕ مشروبات وكافيهات</option>
+                                <option value="مشوار خاص أو استلام طرد">📦 مشوار خاص أو استلام طرد</option>
+                            </select>
+                        </div>
+
+                        <!-- صندوق تصوير الروشتة -->
+                        <div id="prescriptionSection" class="prescription-container">
+                            <h4 style="color: #1e3a8a; font-weight: 800; font-size: 14px; margin-bottom: 4px;">
+                                <i class="fa-solid fa-camera"></i> تصوير الروشتة الطبية
+                            </h4>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+                                التقط صورة واضحة للروشتة أو لعلبة العلاج من الكاميرا
+                            </p>
+
+                            <label class="camera-trigger-btn">
+                                <i class="fa-solid fa-camera"></i>
+                                <span>التقاط صورة بالكاميرا</span>
+                                <input type="file" id="prescriptionInput" accept="image/*" capture="environment" onchange="previewImage(this)" style="display: none;">
+                            </label>
+
+                            <div id="previewBox" class="preview-box">
+                                <img id="previewImg" src="" alt="معاينة الروشتة">
+                                <button type="button" class="btn-remove-pic" onclick="removeImage()">
+                                    <i class="fa-solid fa-trash"></i> حذف
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fa-solid fa-user" style="color: var(--primary);"></i> اسمك الكريم:</label>
+                            <input type="text" id="cName" placeholder="اكتب اسمك" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fa-solid fa-phone" style="color: var(--primary);"></i> رقم الهاتف للتواصل:</label>
+                            <input type="tel" id="cPhone" placeholder="رقم هاتفك للتواصل" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fa-solid fa-shop" style="color: var(--primary);"></i> المحل أو مكان الاستلام:</label>
+                            <input type="text" id="cPickup" placeholder="اسم المطعم أو الصيدلية أو العنوان" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> عنوان التوصيل بالتفصيل:</label>
+                            <input type="text" id="cDrop" placeholder="المنطقة، اسم الشارع، رقم العمارة والشقة" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fa-solid fa-pen" style="color: var(--primary);"></i> تفاصيل الطلب:</label>
+                            <textarea id="cDetails" rows="3" placeholder="اكتب كل الأصناف أو الروشتة أو الملاحظات..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit-order">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+                            <span>ارسل طلبك الآن (واتساب)</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 4. شاشة الاتصال والمتابعة -->
+            <div id="screen-contact" class="screen">
+                <div class="section-heading" style="margin-top: 6px;">
+                    <span>التواصل مع الدليفري 📞</span>
+                </div>
+
+                <div class="form-card-ui" style="text-align: center; padding: 26px 18px;">
+                    <div style="width: 70px; height: 70px; background: #ecfdf5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto;">
+                        <i class="fa-solid fa-headset" style="font-size: 32px; color: var(--primary);"></i>
+                    </div>
+                    <h3 style="font-size: 19px; font-weight: 900; margin-bottom: 6px;">كابتن الدليفري في خدمتك</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 22px;">يمكنك الاتصال هاتفياً في أي وقت ليرن على الرقم فوراً، أو بدء محادثة واتساب سريعة.</p>
+
+                    <a href="tel:01010322011" class="btn-submit-order" style="background: #0284c7; text-decoration: none; margin-bottom: 12px;">
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <span>اتصال هاتفي مباشر</span>
+                    </a>
+
+                    <button onclick="quickWhatsAppChat()" class="btn-submit-order">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>محادثة واتساب سريعة</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- شريط الملاحة السفلي الأنيق -->
+        <div class="floating-bottom-bar">
+            <button class="nav-item active" onclick="goToScreen('home')" id="tab-home" title="الرئيسية">
+                <i class="fa-solid fa-house"></i>
+            </button>
+            <button class="nav-item" onclick="goToScreen('stores')" id="tab-stores" title="الأقسام">
+                <i class="fa-solid fa-shapes"></i>
+            </button>
+            <button class="nav-item" onclick="goToScreen('order')" id="tab-order" title="طلب دليفري">
+                <i class="fa-solid fa-motorcycle"></i>
+            </button>
+            <button class="nav-item" onclick="goToScreen('contact')" id="tab-contact" title="اتصال">
+                <i class="fa-solid fa-phone"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- نافذة تنبيه الروشتة -->
+    <div id="prescriptionModal" class="modal-overlay">
+        <div class="modal-card">
+            <i class="fa-solid fa-circle-check"></i>
+            <h3>تم تجهيز طلبك بنجاح!</h3>
+            <p>لقد قمت بالتقاط صورة الروشتة 📸<br>سيفتح الواتساب الآن، <b>يرجى إرفاق الصورة في المحادثة مع الكابتن</b> ليشتري لك العلاج فوراً.</p>
+            <button onclick="proceedToWhatsApp()" class="btn-submit-order">
+                <i class="fa-brands fa-whatsapp"></i> فتح الواتساب الآن
+            </button>
+        </div>
+    </div>
+
+    <!-- كود الجافاسكريبت التشغيلي -->
+    <script>
+        const WHATSAPP_NUM = "201010322011";
+        let hasPrescriptionImage = false;
+        let generatedWhatsAppUrl = "";
+
+        // كود سحب وشد شريط الأقسام بالماوس واللمس (Drag to Scroll)
+        const slider = document.getElementById('scrollRow');
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => { isDown = false; });
+        slider.addEventListener('mouseup', () => { isDown = false; });
+        slider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // فلترة الكروت عند النقر على كبسولات الأقسام
+        function filterCards(cat, btn) {
+            document.querySelectorAll('.capsule-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.modern-card[data-cat]');
+            cards.forEach(c => {
+                if (cat === 'all' || c.getAttribute('data-cat') === cat) {
+                    c.style.display = 'flex';
+                } else {
+                    c.style.display = 'none';
+                }
+            });
+        }
+
+        // التبديل بين شاشات التطبيق
+        function goToScreen(screenKey) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
+            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+
+            const targetScreen = document.getElementById('screen-' + screenKey);
+            const targetTab = document.getElementById('tab-' + screenKey);
+            if (targetScreen) targetScreen.classList.add('active-screen');
+            if (targetTab) targetTab.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function checkCategoryChange(catValue) {
+            const pSec = document.getElementById('prescriptionSection');
+            if (catValue.includes('علاج') || catValue.includes('أدوية') || catValue.includes('صيدلية')) {
+                pSec.style.display = 'block';
+            } else {
+                pSec.style.display = 'none';
+            }
+        }
+
+        function selectCategoryAndOrder(categoryName) {
+            goToScreen('order');
+            const selectBox = document.getElementById('selectedCat');
+            for (let i = 0; i < selectBox.options.length; i++) {
+                if (selectBox.options[i].text.includes(categoryName.substring(0, 4))) {
+                    selectBox.selectedIndex = i;
+                    break;
+                }
+            }
+            checkCategoryChange(selectBox.value);
+            document.getElementById('cDetails').value = `أوردر من قسم (${categoryName})\nالمطلوب: `;
+            document.getElementById('cDetails').focus();
+        }
+
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImg').src = e.target.result;
+                    document.getElementById('previewBox').style.display = 'block';
+                    hasPrescriptionImage = true;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeImage() {
+            document.getElementById('prescriptionInput').value = "";
+            document.getElementById('previewBox').style.display = 'none';
+            hasPrescriptionImage = false;
+        }
+
+        function handleOrderSubmission(e) {
+            e.preventDefault();
+
+            const cat = document.getElementById('selectedCat').value;
+            const name = document.getElementById('cName').value.trim();
+            const phone = document.getElementById('cPhone').value.trim();
+            const pickup = document.getElementById('cPickup').value.trim();
+            const drop = document.getElementById('cDrop').value.trim();
+            const details = document.getElementById('cDetails').value.trim();
+
+            let prescriptionNote = "";
+            if (hasPrescriptionImage) {
+                prescriptionNote = "\n📸 *الروشتة:* قام العميل بتصوير الروشتة وسيرسلها لك الآن في الشات!";
+            }
+
+            const msg = 
+`🛵 *طلب أوردر جديد عبر تطبيق "توصليتي"*
+──────────────────
+🏷️ *القسم:* ${cat}${prescriptionNote}
+👤 *الاسم:* ${name}
+📱 *الهاتف:* ${phone}
+📍 *مكان الشراء/الاستلام:* ${pickup}
+🏁 *مكان التوصيل:* ${drop}
+📝 *محتوى الطلب بالتفصيل:*
+${details}
+──────────────────`;
+
+            generatedWhatsAppUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUM}&text=${encodeURIComponent(msg)}`;
+
+            if (hasPrescriptionImage) {
+                document.getElementById('prescriptionModal').style.display = 'flex';
+            } else {
+                window.location.href = generatedWhatsAppUrl;
+            }
+        }
+
+        function proceedToWhatsApp() {
+            document.getElementById('prescriptionModal').style.display = 'none';
+            window.location.href = generatedWhatsAppUrl;
+        }
+
+        function quickWhatsAppChat() {
+            const msg = "مرحباً كابتن دليفري توصليتي، أريد الاستفسار عن خدمة التوصيل 🛵";
+            window.location.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUM}&text=${encodeURIComponent(msg)}`;
+        }
+    </script>
+</body>
+</html>
