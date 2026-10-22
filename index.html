@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>توصليتي | خدمة توصيل سريعة</title>
-    <!-- خط تجوال العصري -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    <!-- أيقونات FontAwesome المودرن -->
+    <!-- خط Cairo العصري -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -21,13 +21,14 @@
             --text-muted: #64748b;
             --border-light: #e2e8f0;
             --white: #ffffff;
+            --danger: #ef4444;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Cairo', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -39,7 +40,6 @@
             min-height: 100vh;
         }
 
-        /* حاوية التطبيق */
         .app-wrapper {
             width: 100%;
             max-width: 440px;
@@ -61,25 +61,63 @@
             }
         }
 
-        /* الشريط العلوي */
+        /* 1. شاشة البداية 3 ثواني */
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease;
+        }
+
+        #splashScreen img {
+            width: 125px;
+            height: 125px;
+            object-fit: contain;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: pulseLogo 1.5s infinite alternate;
+        }
+
+        #splashScreen h2 {
+            color: white;
+            font-size: 26px;
+            font-weight: 900;
+            margin-top: 16px;
+        }
+
+        @keyframes pulseLogo {
+            0% { transform: scale(0.95); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* الهيدر العلوي */
         .app-header {
-            padding: 16px 20px 10px;
+            padding: 14px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: var(--white);
             border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            cursor: pointer;
         }
 
         .avatar-img {
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
             object-fit: contain;
             background: #fff;
@@ -88,7 +126,7 @@
         }
 
         .user-text h4 {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 900;
             color: var(--primary);
             display: flex;
@@ -97,31 +135,48 @@
         }
 
         .user-text p {
-            font-size: 12px;
+            font-size: 11px;
             color: #10b981;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
-        .call-action-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 14px;
-            background: #ecfdf5;
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-circle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--primary-soft);
             color: var(--primary);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 17px;
             border: 1px solid #a7f3d0;
+            cursor: pointer;
+            position: relative;
             transition: 0.2s;
         }
 
-        .call-action-btn:active {
-            transform: scale(0.92);
+        .badge-cart-counter {
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            background: var(--danger);
+            color: white;
+            font-size: 11px;
+            font-weight: 900;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .screens-container {
@@ -142,30 +197,19 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* كارت الهيرو الترويجي الراقي */
+        /* كارت الهيرو الترويجي */
         .hero-banner-modern {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 24px;
-            padding: 20px;
+            padding: 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             color: white;
             box-shadow: 0 10px 25px -5px rgba(10, 104, 71, 0.4);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero-banner-modern::after {
-            content: '';
-            position: absolute;
-            left: -30px;
-            bottom: -30px;
-            width: 140px;
-            height: 140px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
         }
 
         .hero-content {
@@ -180,20 +224,20 @@
             border-radius: 20px;
             font-size: 11px;
             font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .hero-content h2 {
-            font-size: 23px;
-            font-weight: 900;
-            line-height: 1.25;
             margin-bottom: 6px;
         }
 
+        .hero-content h2 {
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 4px;
+        }
+
         .hero-content p {
-            font-size: 13px;
+            font-size: 12.5px;
             opacity: 0.9;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .hero-btns {
@@ -202,9 +246,9 @@
         }
 
         .btn-pill {
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 50px;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 800;
             border: none;
             cursor: pointer;
@@ -234,21 +278,21 @@
         }
 
         .hero-img-wrap img {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             filter: drop-shadow(0 8px 12px rgba(0,0,0,0.2));
         }
 
-        /* شريط الأقسام الأفقي القابل للشد والتحريك بالسحب */
+        /* شريط الأقسام الأفقي بالسحب */
         .capsule-wrapper {
             position: relative;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .capsule-row {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             overflow-x: scroll;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
@@ -257,54 +301,35 @@
             user-select: none;
         }
 
-        .capsule-row:active {
-            cursor: grabbing;
-        }
-
-        .capsule-row::-webkit-scrollbar {
-            height: 4px;
-        }
-        .capsule-row::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
+        .capsule-row::-webkit-scrollbar { height: 4px; }
+        .capsule-row::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 
         .capsule-btn {
             background: var(--white);
             border: 1px solid var(--border-light);
-            padding: 10px 18px;
-            border-radius: 16px;
-            font-size: 13.5px;
+            padding: 8px 16px;
+            border-radius: 14px;
+            font-size: 13px;
             font-weight: 800;
             color: var(--text-dark);
             white-space: nowrap;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-shrink: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-            transition: all 0.2s ease;
-        }
-
-        .capsule-btn i {
-            font-size: 16px;
-            color: var(--primary);
+            cursor: pointer;
+            transition: 0.2s;
         }
 
         .capsule-btn.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(10, 104, 71, 0.3);
         }
 
-        .capsule-btn.active i {
-            color: var(--white);
-        }
-
-        /* كروت الأقسام الكبيرة والواضحة (Clean Delivery Style) */
+        /* كروت الأقسام الكبيرة */
         .section-heading {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 900;
             color: var(--text-dark);
             margin-bottom: 12px;
@@ -316,21 +341,21 @@
         .modern-cards-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .modern-card {
             background: var(--white);
-            border-radius: 22px;
+            border-radius: 20px;
             border: 1px solid var(--border-light);
-            padding: 16px;
+            padding: 14px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 12px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 0.2s;
         }
 
         .modern-card:active {
@@ -345,39 +370,39 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            font-size: 11.5px;
+            font-size: 11px;
             font-weight: 800;
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .tag-food { background: #fef3c7; color: #b45309; }
         .tag-drinks { background: #fce7f3; color: #be185d; }
         .tag-med { background: #e0f2fe; color: #0369a1; }
-        .tag-free { background: #dcfce7; color: #15803d; }
+        .tag-other { background: #f3e8ff; color: #7e22ce; }
 
         .card-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 900;
             color: var(--text-dark);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .card-subtitle {
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--text-muted);
             line-height: 1.4;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .btn-order-inline {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 7px 14px;
+            padding: 6px 14px;
             border-radius: 10px;
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
@@ -385,18 +410,17 @@
             cursor: pointer;
         }
 
-        /* حاوية الصور الكبيرة والواضحة */
         .card-image-box {
-            flex: 0.9;
-            height: 125px;
-            width: 125px;
-            max-width: 130px;
+            flex: 0.85;
+            height: 105px;
+            width: 105px;
+            max-width: 110px;
             background: #f8fafc;
-            border-radius: 18px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 8px;
+            padding: 6px;
             border: 1px solid #f1f5f9;
         }
 
@@ -404,165 +428,300 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            image-rendering: -webkit-optimize-contrast;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
         }
 
-        .modern-card:hover .card-image-box img {
-            transform: scale(1.06);
+        /* كارت المنيو والأكورديون */
+        .accordion-box {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            margin-bottom: 12px;
+            overflow: hidden;
         }
 
-        /* كارت تسجيل الأوردر */
+        .accordion-header {
+            width: 100%;
+            padding: 12px 14px;
+            background: none;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: right;
+            gap: 10px;
+        }
+
+        .res-thumb-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid var(--border-light);
+            background: #fff;
+        }
+
+        .accordion-header h4 {
+            font-size: 15.5px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+
+        .accordion-header p {
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+
+        .accordion-body {
+            display: none;
+            padding: 0 14px 14px 14px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .sub-cat-badge {
+            background: #f8fafc;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 800;
+            color: var(--dark-pill);
+            margin: 10px 0 6px 0;
+            border-right: 3px solid var(--accent-yellow);
+        }
+
+        .menu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            font-size: 13px;
+        }
+
+        .item-add-tag {
+            background: var(--primary-soft);
+            color: var(--primary);
+            border: 1px solid #a7f3d0;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        /* كارت الفورم */
         .form-card-ui {
             background: var(--white);
-            border-radius: 24px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 18px;
             border: 1px solid var(--border-light);
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 14px;
         }
 
         .input-group {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .input-group label {
             display: block;
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .input-group input, .input-group textarea, .input-group select {
             width: 100%;
-            padding: 13px 14px;
+            padding: 11px 13px;
             border: 1.5px solid #e2e8f0;
-            border-radius: 14px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 13.5px;
             outline: none;
             background: #f8fafc;
-            transition: 0.2s;
         }
 
-        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
-            border-color: var(--primary);
-            background: #fff;
+        .btn-submit-order {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            font-size: 15px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            margin-top: 6px;
         }
 
-        /* قسم تصوير الروشتة بالكاميرا */
+        /* كارت عناصر السلة */
+        .cart-item-row {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 10px 14px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .cart-qty-ctrl {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart-qty-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            border: 1px solid var(--border-light);
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* توست التنبيه السريع */
+        #toastNotice {
+            position: fixed;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%) translateY(50px);
+            background: var(--dark-pill);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 9999;
+            opacity: 0;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        #toastNotice.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* صندوق تصوير الروشتة */
         .prescription-container {
             display: none;
             background: #eff6ff;
             border: 2px dashed #93c5fd;
-            border-radius: 18px;
-            padding: 16px;
-            margin-bottom: 16px;
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 14px;
             text-align: center;
         }
 
         .camera-trigger-btn {
             background: #2563eb;
             color: white;
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 13.5px;
+            padding: 9px 16px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 800;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
         }
 
-        .preview-box {
-            display: none;
-            margin-top: 10px;
-            position: relative;
-        }
-
-        .preview-box img {
-            width: 100%;
-            max-height: 180px;
-            object-fit: contain;
-            border-radius: 12px;
-            border: 2px solid #2563eb;
-            background: #000;
-        }
-
-        .btn-remove-pic {
-            position: absolute;
-            top: 6px;
-            left: 6px;
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        .btn-submit-order {
-            width: 100%;
-            padding: 14px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            font-size: 16px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            box-shadow: 0 8px 18px rgba(10, 104, 71, 0.3);
-            margin-top: 8px;
-        }
-
-        /* النافذة المنبثقة للروشتة */
+        /* النوافذ المنبثقة */
         .modal-overlay {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.65);
             backdrop-filter: blur(4px);
             z-index: 10000;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 18px;
         }
 
         .modal-card {
             background: white;
-            border-radius: 24px;
-            padding: 24px;
+            border-radius: 22px;
+            padding: 22px;
             text-align: center;
             max-width: 360px;
             width: 100%;
             box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            animation: fadeIn 0.25s ease;
         }
 
-        .modal-card i {
-            font-size: 44px;
-            color: #10b981;
-            margin-bottom: 12px;
+        .size-option-btn {
+            width: 100%;
+            background: #f8fafc;
+            border: 1.5px solid var(--border-light);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
         }
 
-        .modal-card h3 {
-            font-size: 19px;
-            font-weight: 900;
-            margin-bottom: 6px;
+        /* تبويبات لوحة التحكم */
+        .admin-tab-nav {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 14px;
+            overflow-x: auto;
         }
 
-        .modal-card p {
+        .admin-tab-btn {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid var(--border-light);
+            background: white;
+            border-radius: 10px;
+            font-size: 11.5px;
+            font-weight: 800;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .admin-tab-btn.active {
+            background: var(--dark-pill);
+            color: white;
+        }
+
+        /* كارت إدارة المحلات في الداشبورد */
+        .admin-store-manage-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
             font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 18px;
-            line-height: 1.5;
         }
 
-        /* الشريط السفلي العائم (Dark Pill Modern) */
+        .admin-btn-action {
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* الشريط السفلي */
         .floating-bottom-bar {
             position: fixed;
             bottom: 14px;
@@ -585,42 +744,112 @@
             background: transparent;
             border: none;
             color: #94a3b8;
-            font-size: 18px;
+            font-size: 17px;
             cursor: pointer;
-            width: 46px;
-            height: 46px;
-            border-radius: 14px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: 0.25s;
+            gap: 2px;
+            position: relative;
+            transition: 0.2s;
+        }
+
+        .nav-item span {
+            font-size: 9.5px;
+            font-weight: 700;
         }
 
         .nav-item.active {
             background: var(--white);
             color: var(--primary);
-            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
         }
     </style>
 </head>
 <body>
 
+    <!-- 1. شاشة البداية (Splash Screen 3 ثواني) -->
+    <div id="splashScreen">
+        <img src="logo.png" alt="توصليتي" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+        <h2>توصـليتي 🛵</h2>
+        <p style="color: rgba(255,255,255,0.85); font-size: 13px; margin-top: 4px;">أسرع وأشمل خدمة توصيل</p>
+    </div>
+
+    <!-- نافذة تحديد الدخول (مشتري أم مطور) -->
+    <div id="roleSelectModal" class="modal-overlay">
+        <div class="modal-card">
+            <img src="logo.png" style="width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px;" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+            <h3 style="font-size: 18px; font-weight: 900; margin-bottom: 4px;">مرحباً بك في توصليتي</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">اختر طريقة الدخول للاستمرار:</p>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button onclick="enterAsCustomer()" class="btn-submit-order" style="margin-top: 0;">
+                    <i class="fa-solid fa-bag-shopping"></i> الدخول كمشتري (طلب أوردر)
+                </button>
+                <button onclick="openDeveloperLoginModal()" class="btn-order-inline" style="justify-content: center; background: var(--dark-pill); padding: 12px; border-radius: 12px;">
+                    <i class="fa-solid fa-code"></i> الدخول كمطور / لوحة التحكم
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة تسجيل دخول المطور (إيميل وباسورد) -->
+    <div id="devLoginModal" class="modal-overlay">
+        <div class="modal-card">
+            <i class="fa-solid fa-user-shield" style="font-size: 38px; color: var(--primary); margin-bottom: 10px;"></i>
+            <h3 style="font-size: 18px; font-weight: 900; margin-bottom: 4px;">تسجيل دخول المطور</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">أدخل الإيميل والباسورد للوصول للداشبورد الكاملة:</p>
+            
+            <div class="input-group" style="text-align: right;">
+                <label>البريد الإلكتروني:</label>
+                <input type="email" id="devEmailInput" placeholder="admin@tawsilety.com">
+            </div>
+
+            <div class="input-group" style="text-align: right;">
+                <label>كلمة المرور:</label>
+                <input type="password" id="devPassInput" placeholder="••••••">
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: 14px;">
+                <button onclick="verifyDeveloperAuth()" class="btn-submit-order" style="margin-top: 0;">دخول</button>
+                <button onclick="closeDevLoginModal()" class="btn-order-inline" style="background: #e2e8f0; color: #000; justify-content: center; width: 35%;">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- توست الإشعار السريع -->
+    <div id="toastNotice">تمت الإضافة للسلة بنجاح ✅</div>
+
+    <!-- إطار التطبيق الأساسي -->
     <div class="app-wrapper">
 
-        <!-- الهيدر العلوي الأنيق -->
+        <!-- الهيدر العلوي -->
         <header class="app-header">
-            <div class="user-profile">
+            <div class="user-profile" onclick="goToScreen('home')">
                 <img src="logo.png" alt="توصليتي" class="avatar-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
                 <div class="user-text">
                     <h4>توصـليتي <i class="fa-solid fa-motorcycle" style="color: var(--primary);"></i></h4>
-                    <p><i class="fa-solid fa-circle" style="font-size: 8px;"></i> الكابتن جاهز للتوصيل</p>
+                    <p><i class="fa-solid fa-circle" style="font-size: 8px;"></i> الكابتن متاح الآن</p>
                 </div>
             </div>
 
-            <!-- زر اتصال فوري بالدليفري -->
-            <a href="tel:01010322011" class="call-action-btn" title="اتصل فوراً">
-                <i class="fa-solid fa-phone"></i>
-            </a>
+            <div class="header-actions">
+                <!-- زر السلة مع العداد -->
+                <button class="action-circle-btn" onclick="goToScreen('cart')" title="سلة الطلبات">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="badge-cart-counter" id="headerCartBadge">0</span>
+                </button>
+                <!-- زر الداشبورد المباشر للمطور -->
+                <button class="action-circle-btn" onclick="openDeveloperLoginModal()" title="لوحة التحكم">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                <!-- زر الاتصال الفوري -->
+                <a href="tel:01010322011" class="action-circle-btn" title="اتصل فوراً" id="headerCallBtn">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
         </header>
 
         <div class="screens-container">
@@ -628,83 +857,94 @@
             <!-- 1. الشاشة الرئيسية -->
             <div id="screen-home" class="screen active-screen">
                 
-                <!-- كارت الهيرو العصري -->
                 <div class="hero-banner-modern">
                     <div class="hero-content">
-                        <span class="hero-badge"><i class="fa-solid fa-bolt"></i> توصيل فوري وسريع</span>
+                        <span class="hero-badge"><i class="fa-solid fa-bolt"></i> أسرع خدمة دليفري</span>
                         <h2>أي طلب فـي بالك.. <br><span>يوصلك فـي دقايق!</span></h2>
-                        <p>مشاويرك، أكلاتك، مشترياتك، وعلاجك لحد باب بيتك.</p>
+                        <p>مطاعم، صيدليات، ومحلات تجارية لحد باب بيتك.</p>
                         <div class="hero-btns">
-                            <button class="btn-pill btn-pill-yellow" onclick="goToScreen('order')">
-                                <i class="fa-brands fa-whatsapp"></i> اطلب الآن
+                            <button class="btn-pill btn-pill-yellow" onclick="goToScreen('restaurants')">
+                                <i class="fa-solid fa-utensils"></i> منيو المطاعم
                             </button>
-                            <a href="tel:01010322011" class="btn-pill btn-pill-white">
+                            <a href="tel:01010322011" class="btn-pill btn-pill-white" id="bannerCallBtn">
                                 <i class="fa-solid fa-phone"></i> اتصال
                             </a>
                         </div>
                     </div>
                     <div class="hero-img-wrap">
-                        <img src="delivery.png" alt="دليفري" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+                        <img src="delivery.png" alt="دليفري" onerror="this.src='logo.png'">
                     </div>
                 </div>
 
-                <!-- شريط الأقسام الأفقي القابل للسحب والشد (Swipe & Drag) -->
+                <!-- شريط الأقسام الأفقي -->
                 <div class="capsule-wrapper">
                     <div class="capsule-row" id="scrollRow">
                         <button class="capsule-btn active" onclick="filterCards('all', this)">
                             <i class="fa-solid fa-layer-group"></i> كل الأقسام
                         </button>
-                        <button class="capsule-btn" onclick="filterCards('food', this)">
-                            <i class="fa-solid fa-utensils"></i> مأكولات ومطاعم
+                        <button class="capsule-btn" onclick="goToScreen('restaurants')">
+                            <i class="fa-solid fa-utensils"></i> قسم المطاعم
+                        </button>
+                        <button class="capsule-btn" onclick="goToScreen('pharmacy-choice')">
+                            <i class="fa-solid fa-kit-medical"></i> قسم الصيدليات
+                        </button>
+                        <button class="capsule-btn" onclick="goToScreen('other-stores')">
+                            <i class="fa-solid fa-store"></i> محلات وخدمات أخرى
                         </button>
                         <button class="capsule-btn" onclick="filterCards('drinks', this)">
                             <i class="fa-solid fa-mug-saucer"></i> مشروبات وكافيه
                         </button>
-                        <button class="capsule-btn" onclick="filterCards('med', this)">
-                            <i class="fa-solid fa-kit-medical"></i> صيدلية وعلاج
-                        </button>
-                        <button class="capsule-btn" onclick="filterCards('free', this)">
-                            <i class="fa-solid fa-box-open"></i> مشاوير وأمانات
-                        </button>
                     </div>
                 </div>
 
-                <!-- كروت الأقسام ذات الصور الكبيرة والواضحة -->
+                <!-- كروت الأقسام الرئيسية -->
                 <div class="section-heading">
-                    <span>اختر قسمك واطلب فوراً</span>
-                    <span style="font-size: 13px; color: var(--primary); font-weight: 700; cursor: pointer;" onclick="goToScreen('stores')">المحلات المتاحة</span>
+                    <span>أقسام التوصيل المتاحة</span>
                 </div>
 
                 <div class="modern-cards-list" id="cardsList">
 
-                    <!-- كارت 1: المأكولات (food.png) -->
-                    <div class="modern-card" data-cat="food" onclick="selectCategoryAndOrder('أطعمة ومأكولات (مطاعم)')">
+                    <!-- 1. كارت قسم المطاعم (يشمل الهندي، الزعيم، بروست، الوزير، القدس، تكة، الأصدقاء) -->
+                    <div class="modern-card" data-cat="food" onclick="goToScreen('restaurants')">
                         <div class="card-details">
-                            <span class="card-tag tag-food"><i class="fa-solid fa-fire"></i> وجبات ساخنة</span>
-                            <div class="card-title">المطاعم والمأكولات</div>
-                            <div class="card-subtitle">برجر، كريب، مشويات، بيتزا وشعبي من أي مطعم يعجبك.</div>
-                            <button class="btn-order-inline"><i class="fa-brands fa-whatsapp"></i> اطلب الآن</button>
+                            <span class="card-tag tag-food"><i class="fa-solid fa-fire"></i> منيو بالأسعار والسلة</span>
+                            <div class="card-title">قسم المطاعم المعتمدة</div>
+                            <div class="card-subtitle">مطعم الهندي، الزعيم، بروست، الوزير، القدس، تكة كريب، والأصدقاء.</div>
+                            <button class="btn-order-inline"><i class="fa-solid fa-utensils"></i> تصفح المطاعم واطلب</button>
                         </div>
                         <div class="card-image-box">
-                            <img src="food.png" alt="مأكولات" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3075/3075977.png'">
+                            <img src="food.png" alt="المطاعم" onerror="this.src='logo.png'">
                         </div>
                     </div>
 
-                    <!-- كارت 2: الصيدليات والعلاج (pharmacy.png) -->
-                    <div class="modern-card" data-cat="med" onclick="selectCategoryAndOrder('صيدلية وأدوية وعلاج')">
+                    <!-- 2. كارت قسم الصيدليات -->
+                    <div class="modern-card" data-cat="med" onclick="goToScreen('pharmacy-choice')">
                         <div class="card-details">
-                            <span class="card-tag tag-med"><i class="fa-solid fa-camera"></i> يدعم تصوير الروشتة</span>
-                            <div class="card-title">صيدليات وعلاج عاجل</div>
-                            <div class="card-subtitle">صور الروشتة أو اكتب اسم الدواء ويوصلك في أسرع وقت.</div>
-                            <button class="btn-order-inline"><i class="fa-solid fa-camera"></i> تصوير واطلب</button>
+                            <span class="card-tag tag-med"><i class="fa-solid fa-camera"></i> حفظ الروشتة وتوصيل</span>
+                            <div class="card-title">قسم الصيدليات والعلاج</div>
+                            <div class="card-subtitle">صيدلية د. محمد معتمد وصيدليات منطقتك مع تصوير الروشتة.</div>
+                            <button class="btn-order-inline"><i class="fa-solid fa-kit-medical"></i> طلب علاج وصيدلية</button>
                         </div>
                         <div class="card-image-box">
-                            <img src="pharmacy.png" alt="أدوية" onerror="this.src='https://cdn-icons-png.flaticon.com/512/883/883407.png'">
+                            <img src="pharmacy.png" alt="أدوية" onerror="this.src='logo.png'">
                         </div>
                     </div>
 
-                    <!-- كارت 3: المشروبات والكافيهات (drinks.png) -->
-                    <div class="modern-card" data-cat="drinks" onclick="selectCategoryAndOrder('مشروبات وكافيهات وعصائر')">
+                    <!-- 3. كارت محلات وخدمات أخرى (الـ 14 محل الجدد مع التعديل من الداشبورد) -->
+                    <div class="modern-card" data-cat="other" onclick="goToScreen('other-stores')">
+                        <div class="card-details">
+                            <span class="card-tag tag-other"><i class="fa-solid fa-shop"></i> محلات متنوعة</span>
+                            <div class="card-title">محلات وخدمات أخرى</div>
+                            <div class="card-subtitle">أسواق، مخابز، عطور، محمصات وصيدليات إضافية.</div>
+                            <button class="btn-order-inline" style="background: #7e22ce;"><i class="fa-solid fa-store"></i> تصفح المحلات واطلب</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="logo.png" alt="محلات أخرى" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+                        </div>
+                    </div>
+
+                    <!-- 4. كارت المشروبات -->
+                    <div class="modern-card" data-cat="drinks" onclick="openDirectCustomOrder('مشروبات وكافيهات', 'اكتب اسم الكافيه أو محل العصير...')">
                         <div class="card-details">
                             <span class="card-tag tag-drinks"><i class="fa-solid fa-snowflake"></i> فريش وبارد</span>
                             <div class="card-title">مشروبات وكافيهات</div>
@@ -712,20 +952,7 @@
                             <button class="btn-order-inline"><i class="fa-brands fa-whatsapp"></i> اطلب الآن</button>
                         </div>
                         <div class="card-image-box">
-                            <img src="drinks.png" alt="مشروبات" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2405/2405479.png'">
-                        </div>
-                    </div>
-
-                    <!-- كارت 4: مشاوير خاصة وطرود (delivery.png) -->
-                    <div class="modern-card" data-cat="free" onclick="selectCategoryAndOrder('مشوار حر واستلام طرد')">
-                        <div class="card-details">
-                            <span class="card-tag tag-free"><i class="fa-solid fa-box"></i> أمان وسرعة</span>
-                            <div class="card-title">مشاوير وطرود خاصة</div>
-                            <div class="card-subtitle">توصيل أي أمانة أو غرض من باب إلى باب بأمان.</div>
-                            <button class="btn-order-inline"><i class="fa-brands fa-whatsapp"></i> اطلب الكابتن</button>
-                        </div>
-                        <div class="card-image-box">
-                            <img src="delivery.png" alt="مشوار" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+                            <img src="drinks.png" alt="مشروبات" onerror="this.src='logo.png'">
                         </div>
                     </div>
 
@@ -733,119 +960,201 @@
 
             </div>
 
-            <!-- 2. صفحة الأقسام والمحلات -->
-            <div id="screen-stores" class="screen">
+            <!-- 2. شاشة قسم الصيدليات -->
+            <div id="screen-pharmacy-choice" class="screen">
                 <div class="section-heading" style="margin-top: 6px;">
-                    <span>المحلات والأقسام المتاحة</span>
+                    <span>قسم الصيدليات والعلاج 💊</span>
+                    <button class="btn-order-inline" onclick="goToScreen('home')"><i class="fa-solid fa-arrow-left"></i> رجوع</button>
                 </div>
-                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-                    اختر المحل أو القسم الذي تريد الشراء منه وسيتولى الكابتن المهمة فوراً.
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
+                    اختر الصيدلية المطلوبة لتصوير الروشتة أو كتابة أسماء الأدوية:
                 </p>
 
                 <div class="modern-cards-list">
-                    <div class="modern-card" onclick="selectCategoryAndOrder('مطاعم ومأكولات')">
+                    <div class="modern-card" onclick="openPharmacyOrder('صيدلية دكتور محمد معتمد')">
                         <div class="card-details">
-                            <span class="card-tag tag-food">مطاعم</span>
-                            <div class="card-title">كل مطاعم منطقتك</div>
-                            <div class="card-subtitle">وجبات سريعة، كريب، بيتزا ومطاعم شعبية.</div>
-                            <button class="btn-order-inline">اطلب الآن</button>
+                            <span class="card-tag tag-med"><i class="fa-solid fa-star"></i> معتمدة لدينا</span>
+                            <div class="card-title">صيدلية دكتور محمد معتمد</div>
+                            <div class="card-subtitle">صرف أدوية، روشتات، ومستلزمات رعاية أطفال وتوصيل سريع.</div>
+                            <button class="btn-order-inline"><i class="fa-solid fa-camera"></i> تصوير روشتة والطلب</button>
                         </div>
                         <div class="card-image-box">
-                            <img src="food.png" alt="مطاعم" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3075/3075977.png'">
+                            <img src="res-moatamed.png" alt="د. محمد معتمد" onerror="this.src='logo.png'">
                         </div>
                     </div>
 
-                    <div class="modern-card" onclick="selectCategoryAndOrder('صيدلية وأدوية وعلاج')">
+                    <div class="modern-card" onclick="openPharmacyOrder('')">
                         <div class="card-details">
-                            <span class="card-tag tag-med">صيدليات</span>
-                            <div class="card-title">صيدليات خدمة 24 ساعة</div>
-                            <div class="card-subtitle">صرف أدوية ومستلزمات رعاية أطفال.</div>
-                            <button class="btn-order-inline">تصوير روشتة</button>
+                            <span class="card-tag tag-free"><i class="fa-solid fa-location-dot"></i> في نطاقك</span>
+                            <div class="card-title">صيدلية أخرى</div>
+                            <div class="card-subtitle">اكتب اسم أي صيدلية في منطقتك وسيتولى الكابتن الشراء فوراً.</div>
+                            <button class="btn-order-inline" style="background: var(--dark-pill);"><i class="fa-solid fa-pen"></i> اكتب اسم الصيدلية واطلب</button>
                         </div>
                         <div class="card-image-box">
-                            <img src="pharmacy.png" alt="صيدلية" onerror="this.src='https://cdn-icons-png.flaticon.com/512/883/883407.png'">
-                        </div>
-                    </div>
-
-                    <div class="modern-card" onclick="selectCategoryAndOrder('عصائر وكافيهات')">
-                        <div class="card-details">
-                            <span class="card-tag tag-drinks">كافيهات</span>
-                            <div class="card-title">محلات العصائر والبن</div>
-                            <div class="card-subtitle">عصائر فريش وقهوة مجهزة طازجة.</div>
-                            <button class="btn-order-inline">اطلب الآن</button>
-                        </div>
-                        <div class="card-image-box">
-                            <img src="drinks.png" alt="عصائر" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2405/2405479.png'">
+                            <img src="pharmacy.png" alt="صيدلية" onerror="this.src='logo.png'">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 3. شاشة تسجيل الأوردر -->
+            <!-- 3. شاشة قسم المطاعم (بما فيها مطعم الهندي بالكامل) -->
+            <div id="screen-restaurants" class="screen">
+                <div class="section-heading" style="margin-top: 6px;">
+                    <span>قائمة المطاعم المعتمدة 🍔</span>
+                    <button class="btn-order-inline" onclick="goToScreen('cart')" style="background: var(--accent-yellow); color: #000;">
+                        <i class="fa-solid fa-basket-shopping"></i> السلة (<span class="screenCartCount">0</span>)
+                    </button>
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
+                    أضف أي عدد من الوجبات للسلة، وعند الانتهاء افتح السلة لتأكيد الأوردر:
+                </p>
+
+                <!-- خيار طلب من مطعم آخر -->
+                <div class="modern-card" style="margin-bottom: 12px; border-right: 4px solid var(--accent-yellow);" onclick="openDirectCustomOrder('طلب من مطعم آخر', 'اكتب اسم المطعم والوجبات...')">
+                    <div class="card-details">
+                        <span class="card-tag tag-food"><i class="fa-solid fa-plus"></i> غير مدرج؟</span>
+                        <div class="card-title">الطلب من مطعم آخر</div>
+                        <div class="card-subtitle">اكتب اسم أي مطعم وطلباتك وسيحضرها لك الدليفري.</div>
+                        <button class="btn-order-inline" style="background: var(--accent-yellow); color: #000;">اكتب اسم المطعم</button>
+                    </div>
+                    <div class="card-image-box" style="height: 90px; width: 90px;">
+                        <img src="food.png" alt="مطعم" onerror="this.src='logo.png'">
+                    </div>
+                </div>
+
+                <!-- قائمة المطاعم السبعة كاملة -->
+                <div id="dynamicRestaurantsContainer"></div>
+            </div>
+
+            <!-- 4. شاشة "محلات وخدمات أخرى" -->
+            <div id="screen-other-stores" class="screen">
+                <div class="section-heading" style="margin-top: 6px;">
+                    <span>دليل المحلات والخدمات 🏪</span>
+                    <button class="btn-order-inline" onclick="goToScreen('home')"><i class="fa-solid fa-arrow-left"></i> رجوع</button>
+                </div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
+                    اختر المحل واكتب طلباتك وسيحضرها لك الدليفري فوراً:
+                </p>
+
+                <div class="modern-cards-list" id="otherStoresListContainer"></div>
+            </div>
+
+            <!-- 5. شاشة سلة المشتريات (Cart Screen) -->
+            <div id="screen-cart" class="screen">
+                <div class="section-heading" style="margin-top: 6px;">
+                    <span>سلة طلباتك 🛒</span>
+                    <button class="btn-order-inline" onclick="goToScreen('restaurants')"><i class="fa-solid fa-plus"></i> إضافة أكلات أخرى</button>
+                </div>
+
+                <div id="cartItemsContainer"></div>
+
+                <div id="cartCheckoutBox" style="display: none;">
+                    <div style="background: var(--white); border: 1.5px solid var(--border-light); padding: 14px; border-radius: 14px; margin: 12px 0; display: flex; justify-content: space-between; align-items: center; font-weight: 900;">
+                        <span>إجمالي الفاتورة التقريبي:</span>
+                        <span id="cartTotalPrice" style="color: var(--primary); font-size: 17px;">0 ج</span>
+                    </div>
+
+                    <div class="form-card-ui">
+                        <h4 style="font-size: 15px; font-weight: 900; color: var(--primary); margin-bottom: 12px;">بيانات استلام الأوردر:</h4>
+
+                        <div class="input-group">
+                            <label>اسمك الكريم:</label>
+                            <input type="text" id="cartCustName" placeholder="اكتب اسمك بالكامل" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>رقم الهاتف للتواصل:</label>
+                            <input type="tel" id="cartCustPhone" placeholder="رقم هاتفك" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>عنوان التوصيل بالتفصيل:</label>
+                            <input type="text" id="cartCustDrop" placeholder="المنطقة، الشارع، العمارة، الشقة" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>ملاحظات إضافية للكابتن:</label>
+                            <input type="text" id="cartCustNotes" placeholder="أي ملاحظة أو تعليمات خاصة...">
+                        </div>
+
+                        <button onclick="submitCartToWhatsApp()" class="btn-submit-order">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+                            <span>تأكيد وإرسال السلة عبر واتساب</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="cartEmptyView" style="text-align: center; padding: 40px 10px; color: var(--text-muted);">
+                    <i class="fa-solid fa-basket-shopping" style="font-size: 48px; color: #cbd5e1; margin-bottom: 10px;"></i>
+                    <h4 style="font-size: 16px; font-weight: 800; color: var(--text-dark);">سلتك فارغة حالياً</h4>
+                    <p style="font-size: 13px; margin: 6px 0 16px 0;">تصفح قوائم المطاعم واختر وجباتك المفضلة لتظهر هنا.</p>
+                    <button onclick="goToScreen('restaurants')" class="btn-submit-order" style="margin: auto; max-width: 200px;">تصفح المطاعم الآن</button>
+                </div>
+            </div>
+
+            <!-- 6. شاشة تسجيل طلب حر / مخصص -->
             <div id="screen-order" class="screen">
                 <div class="section-heading" style="margin-top: 6px;">
                     <span>تسجيل طلبك 🛵</span>
                 </div>
 
                 <div class="form-card-ui">
-                    <form onsubmit="handleOrderSubmission(event)">
+                    <form onsubmit="handleDirectOrderSubmission(event)">
                         
                         <div class="input-group">
-                            <label><i class="fa-solid fa-list" style="color: var(--primary);"></i> اختر القسم:</label>
-                            <select id="selectedCat" onchange="checkCategoryChange(this.value)">
-                                <option value="مأكولات ومطاعم">🍔 مأكولات ومطاعم</option>
-                                <option value="أدوية وعلاج وصيدلية">💊 أدوية وعلاج وصيدلية</option>
+                            <label>نوع الطلب:</label>
+                            <select id="directOrderCat" onchange="checkPrescriptionField(this.value)">
+                                <option value="طلب من مطعم">🍔 طلب من مطعم</option>
+                                <option value="صيدلية وعلاج">💊 صيدلية وعلاج</option>
+                                <option value="محلات وخدمات أخرى">🏪 محلات وخدمات أخرى</option>
                                 <option value="مشروبات وكافيهات">☕ مشروبات وكافيهات</option>
-                                <option value="مشوار خاص أو استلام طرد">📦 مشوار خاص أو استلام طرد</option>
+                                <option value="مشوار حر وطرد">📦 مشوار حر وطرد</option>
                             </select>
                         </div>
 
+                        <div class="input-group">
+                            <label>المحل / الصيدلية / مكان الاستلام:</label>
+                            <input type="text" id="directOrderPickup" placeholder="اسم المحل أو المكان" required>
+                        </div>
+
                         <!-- صندوق تصوير الروشتة -->
-                        <div id="prescriptionSection" class="prescription-container">
+                        <div id="directPrescriptionBox" class="prescription-container">
                             <h4 style="color: #1e3a8a; font-weight: 800; font-size: 14px; margin-bottom: 4px;">
                                 <i class="fa-solid fa-camera"></i> تصوير الروشتة الطبية
                             </h4>
-                            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-                                التقط صورة واضحة للروشتة أو لعلبة العلاج من الكاميرا
+                            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+                                التقط صورة واضحة للروشتة، وستُحفظ تلقائياً في معرض هاتفك.
                             </p>
 
                             <label class="camera-trigger-btn">
                                 <i class="fa-solid fa-camera"></i>
                                 <span>التقاط صورة بالكاميرا</span>
-                                <input type="file" id="prescriptionInput" accept="image/*" capture="environment" onchange="previewImage(this)" style="display: none;">
+                                <input type="file" id="directRxFile" accept="image/*" capture="environment" onchange="handleRxImageUpload(this)" style="display: none;">
                             </label>
 
-                            <div id="previewBox" class="preview-box">
-                                <img id="previewImg" src="" alt="معاينة الروشتة">
-                                <button type="button" class="btn-remove-pic" onclick="removeImage()">
-                                    <i class="fa-solid fa-trash"></i> حذف
-                                </button>
+                            <div id="directRxPreview" style="display: none; margin-top: 8px;">
+                                <img id="directRxPreviewImg" src="" style="width: 100%; max-height: 180px; object-fit: contain; border-radius: 10px; border: 2px solid #2563eb;" alt="روشتة">
                             </div>
                         </div>
 
                         <div class="input-group">
-                            <label><i class="fa-solid fa-user" style="color: var(--primary);"></i> اسمك الكريم:</label>
-                            <input type="text" id="cName" placeholder="اكتب اسمك" required>
+                            <label>اسمك الكريم:</label>
+                            <input type="text" id="directCustName" placeholder="اكتب اسمك" required>
                         </div>
 
                         <div class="input-group">
-                            <label><i class="fa-solid fa-phone" style="color: var(--primary);"></i> رقم الهاتف للتواصل:</label>
-                            <input type="tel" id="cPhone" placeholder="رقم هاتفك للتواصل" required>
+                            <label>رقم الهاتف للتواصل:</label>
+                            <input type="tel" id="directCustPhone" placeholder="رقم هاتفك" required>
                         </div>
 
                         <div class="input-group">
-                            <label><i class="fa-solid fa-shop" style="color: var(--primary);"></i> المحل أو مكان الاستلام:</label>
-                            <input type="text" id="cPickup" placeholder="اسم المطعم أو الصيدلية أو العنوان" required>
+                            <label>عنوان التوصيل بالتفصيل:</label>
+                            <input type="text" id="directCustDrop" placeholder="المنطقة، الشارع، العمارة، الشقة" required>
                         </div>
 
                         <div class="input-group">
-                            <label><i class="fa-solid fa-location-dot" style="color: var(--primary);"></i> عنوان التوصيل بالتفصيل:</label>
-                            <input type="text" id="cDrop" placeholder="المنطقة، اسم الشارع، رقم العمارة والشقة" required>
-                        </div>
-
-                        <div class="input-group">
-                            <label><i class="fa-solid fa-pen" style="color: var(--primary);"></i> تفاصيل الطلب:</label>
-                            <textarea id="cDetails" rows="3" placeholder="اكتب كل الأصناف أو الروشتة أو الملاحظات..." required></textarea>
+                            <label>تفاصيل ومحتوى الطلب:</label>
+                            <textarea id="directOrderDetails" rows="4" placeholder="اكتب كل الأصناف والمشتريات المطلوبة بالتفصيل..." required></textarea>
                         </div>
 
                         <button type="submit" class="btn-submit-order">
@@ -856,204 +1165,1385 @@
                 </div>
             </div>
 
-            <!-- 4. شاشة الاتصال والمتابعة -->
-            <div id="screen-contact" class="screen">
+            <!-- 7. شاشة معلومات التطبيق والمطور (محمد أحمد عبد النبي) -->
+            <div id="screen-about" class="screen">
                 <div class="section-heading" style="margin-top: 6px;">
-                    <span>التواصل مع الدليفري 📞</span>
+                    <span>معلومات التطبيق والمطور ℹ️</span>
                 </div>
 
-                <div class="form-card-ui" style="text-align: center; padding: 26px 18px;">
-                    <div style="width: 70px; height: 70px; background: #ecfdf5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto;">
-                        <i class="fa-solid fa-headset" style="font-size: 32px; color: var(--primary);"></i>
+                <div class="form-card-ui" style="text-align: center; padding: 22px 16px;">
+                    <img src="logo.png" style="width: 70px; height: 70px; object-fit: contain; margin-bottom: 8px;" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2830/2830305.png'">
+                    <h3 style="font-size: 20px; font-weight: 900; color: var(--primary);">تطبيق توصـليتي</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 8px;">منصة التوصيل المتكاملة لكافة المشاوير والطلبات</p>
+                    <span style="background: #f1f5f9; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; color: var(--dark-pill);">الإصدار: v2.5.0 Pro</span>
+                </div>
+
+                <div class="form-card-ui" style="border-right: 5px solid var(--accent-yellow);">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <div style="width: 55px; height: 55px; border-radius: 50%; background: var(--primary-soft); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--primary);">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <span style="font-size: 11.5px; font-weight: 800; color: var(--accent-yellow);"><i class="fa-solid fa-circle-check"></i> مطور البرمجيات</span>
+                            <h4 style="font-size: 17px; font-weight: 900; color: var(--dark-pill);">محمد أحمد عبد النبي</h4>
+                        </div>
                     </div>
-                    <h3 style="font-size: 19px; font-weight: 900; margin-bottom: 6px;">كابتن الدليفري في خدمتك</h3>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 22px;">يمكنك الاتصال هاتفياً في أي وقت ليرن على الرقم فوراً، أو بدء محادثة واتساب سريعة.</p>
 
-                    <a href="tel:01010322011" class="btn-submit-order" style="background: #0284c7; text-decoration: none; margin-bottom: 12px;">
-                        <i class="fa-solid fa-phone-volume"></i>
-                        <span>اتصال هاتفي مباشر</span>
-                    </a>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+                        مصمم فوتوشوب، فيديو إيديتور، ومطور برمجيات وتطبيقات ويب متكاملة. جاهز لتنفيذ وتصميم أي تطبيق أو فكرة برمجية مخصصة لعملك التجاري.
+                    </p>
 
-                    <button onclick="quickWhatsAppChat()" class="btn-submit-order">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        <span>محادثة واتساب سريعة</span>
-                    </button>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        <a href="https://wa.me/201004997697?text=مرحبا%20أستاذ%20محمد%20أود%20الاستفسار%20عن%20برمجة%20وتصميم%20تطبيق" target="_blank" class="btn-submit-order" style="background: #25d366; text-decoration: none;">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 20px;"></i>
+                            <span>تواصل مع المطور عبر واتساب (01004997697)</span>
+                        </a>
+
+                        <a href="tel:01004997697" class="btn-order-inline" style="justify-content: center; background: var(--dark-pill); padding: 12px; border-radius: 12px; text-decoration: none;">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>اتصال هاتفي بالمطور</span>
+                        </a>
+                    </div>
                 </div>
+            </div>
+
+            <!-- 8. شاشة لوحة تحكم الإدارة (Dashboard) مع تعديل المحلات -->
+            <div id="screen-dashboard" class="screen">
+                <div class="section-heading" style="margin-top: 6px;">
+                    <span>لوحة تحكم الإدارة الكاملة ⚙️</span>
+                    <button class="btn-order-inline" onclick="goToScreen('home')"><i class="fa-solid fa-arrow-left"></i> خروج</button>
+                </div>
+
+                <div class="admin-tab-nav">
+                    <button class="admin-tab-btn active" onclick="switchAdminTab('stores', this)">إدارة المحلات</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('restaurants', this)">إدارة المطاعم والمنيو</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('settings', this)">الأرقام والأمان</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('orders', this)">سجل الطلبات</button>
+                </div>
+
+                <!-- تبويب إدارة وتعديل المحلات -->
+                <div id="admin-tab-stores" class="admin-tab-content">
+                    <!-- نموذج إضافة محل جديد -->
+                    <div class="form-card-ui">
+                        <h4 style="font-size: 15px; font-weight: 900; color: var(--primary); margin-bottom: 10px;">إضافة محل أو متجر جديد:</h4>
+                        
+                        <div class="input-group">
+                            <label>اسم المحل / الصيدلية:</label>
+                            <input type="text" id="newStoreName" placeholder="مثال: مخبز النور">
+                        </div>
+
+                        <div class="input-group">
+                            <label>نوع المحل / تصنيفه:</label>
+                            <input type="text" id="newStoreCategory" placeholder="مثال: مخابز وحلواني / صيدليات">
+                        </div>
+
+                        <div class="input-group">
+                            <label>اسم ملف الصورة أو الرابط (اتركه فارغاً للشعار التلقائي logo.png):</label>
+                            <input type="text" id="newStoreImg" placeholder="logo.png">
+                        </div>
+
+                        <button onclick="addNewStoreFromDashboard()" class="btn-submit-order">
+                            <i class="fa-solid fa-plus"></i> إضافة المحل للتطبيق
+                        </button>
+                    </div>
+
+                    <!-- قائمة المحلات مع إمكانية التعديل والحذف -->
+                    <div class="form-card-ui">
+                        <h4 style="font-size: 14px; font-weight: 900; margin-bottom: 8px;">المحلات الحالية (تعديل وحذف):</h4>
+                        <div id="adminStoresManageList"></div>
+                    </div>
+                    <div class="form-card-ui">
+                        <h4 style="font-size:15px;font-weight:900;color:var(--primary);margin-bottom:10px">إدارة عناصر المحل</h4>
+                        <div class="input-group"><label>اختار المحل:</label><select id="adminStoreItemsSelect" onchange="renderStoreItemsEditor()"></select></div>
+                        <div class="input-group"><label>اسم العنصر:</label><input id="newStoreItemName" placeholder="مثال: مياه معدنية"></div>
+                        <div class="input-group"><label>السعر (اختياري):</label><input id="newStoreItemPrice" placeholder="مثال: 10 ج"></div>
+                        <button class="btn-submit-order" onclick="addStoreItem()"><i class="fa-solid fa-plus"></i> إضافة عنصر للمحل</button>
+                        <div id="storeItemsEditor" style="margin-top:12px"></div>
+                    </div>
+                </div>
+
+                <!-- تبويب الإعدادات والأرقام -->
+                <div id="admin-tab-settings" class="admin-tab-content" style="display: none;">
+                    <div class="form-card-ui">
+                        <h4 style="font-size: 15px; font-weight: 900; color: var(--primary); margin-bottom: 12px;">أرقام الدليفري وبيانات الحساب:</h4>
+                        
+                        <div class="input-group">
+                            <label>رقم واتساب استلام الطلبات (دولي بدون +):</label>
+                            <input type="text" id="adminWaInput" placeholder="201010322011">
+                        </div>
+
+                        <div class="input-group">
+                            <label>رقم هاتف الاتصال المباشر:</label>
+                            <input type="text" id="adminCallInput" placeholder="01010322011">
+                        </div>
+
+                        <div class="input-group">
+                            <label>تغيير بريد دخول Firebase للإدارة:</label>
+                            <input type="email" id="adminEmailInput" placeholder="admin@tawsilety.com">
+                        </div>
+
+                        <div class="input-group">
+                            <label>تغيير كلمة مرور Firebase للإدارة:</label>
+                            <input type="password" id="adminPasswordInput" placeholder="كلمة المرور الجديدة">
+                        </div>
+
+                        <button onclick="saveAdminCoreSettings()" class="btn-submit-order">
+                            <i class="fa-solid fa-floppy-disk"></i> حفظ التعديلات
+                        </button>
+                    </div>
+                </div>
+
+                <!-- لوحة إدارة المطاعم والمنيو -->
+                <div id="admin-tab-restaurants" class="admin-tab-content" style="display:none;">
+                    <div class="form-card-ui">
+                        <h4 style="font-size:15px;font-weight:900;color:var(--primary);margin-bottom:10px">اختار المطعم اللي عايز تعدله</h4>
+                        <div class="input-group"><label>المطعم:</label><select id="adminRestaurantManageSelect" onchange="loadRestaurantEditor()"></select></div>
+                        <div class="input-group"><label>اسم المطعم:</label><input id="editRestaurantName" placeholder="اسم المطعم"></div>
+                        <div class="input-group"><label>وصف المطعم:</label><input id="editRestaurantDesc" placeholder="وصف المطعم"></div>
+                        <div class="input-group"><label>رابط الصورة أو مسارها:</label><input id="editRestaurantImg" placeholder="res-hendi.png أو رابط صورة"></div>
+                        <div style="display:flex;gap:8px;flex-wrap:wrap">
+                          <button class="btn-submit-order" style="flex:1" onclick="saveRestaurantDetails()">حفظ بيانات المطعم</button>
+                          <button class="btn-order-inline" style="background:#fee2e2;color:#b91c1c" onclick="deleteRestaurant()">حذف المطعم</button>
+                        </div>
+                    </div>
+                    <div class="form-card-ui">
+                        <h4 style="font-size:15px;font-weight:900;color:var(--primary);margin-bottom:10px">إضافة صنف للمطعم المحدد</h4>
+                        <div class="input-group"><label>القسم:</label><select id="restaurantCategorySelect"></select></div>
+                        <div class="input-group"><label>اسم الصنف:</label><input id="newFoodName" placeholder="مثال: وجبة فراخ"></div>
+                        <div class="input-group"><label>السعر:</label><input id="newFoodPrice" placeholder="مثال: 75 أو صغير:60، وسط:75، كبير:90"></div>
+                        <button class="btn-submit-order" onclick="addFoodItemFromDashboard()"><i class="fa-solid fa-plus"></i> إضافة الصنف</button>
+                        <div style="border-top:1px solid var(--border-light);margin:18px 0"></div>
+                        <h4 style="font-size:15px;font-weight:900;margin-bottom:10px">الأصناف الحالية — تعديل أو حذف</h4>
+                        <div id="restaurantItemsEditor"></div>
+                    </div>
+                    <div class="form-card-ui"><button onclick="resetRestaurantDataToDefault()" class="btn-order-inline" style="background:#64748b">استعادة قوائم الطعام الأصلية</button></div>
+                </div>
+
+                <!-- تبويب سجل الطلبات -->
+                <div id="admin-tab-orders" class="admin-tab-content" style="display: none;">
+                    <div class="form-card-ui">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="font-size: 15px; font-weight: 900; color: var(--primary);">سجل الطلبات السابقة:</h4>
+                            <button onclick="clearOrdersLog()" class="btn-order-inline" style="background: var(--danger); font-size: 11px;">مسح السجل</button>
+                        </div>
+                        <div id="adminOrdersLogContainer"></div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
 
-        <!-- شريط الملاحة السفلي الأنيق -->
+        <!-- الشريط السفلي الثابت -->
         <div class="floating-bottom-bar">
-            <button class="nav-item active" onclick="goToScreen('home')" id="tab-home" title="الرئيسية">
+            <button class="nav-item active" onclick="goToScreen('home')" id="tab-home">
                 <i class="fa-solid fa-house"></i>
+                <span>الرئيسية</span>
             </button>
-            <button class="nav-item" onclick="goToScreen('stores')" id="tab-stores" title="الأقسام">
-                <i class="fa-solid fa-shapes"></i>
+            <button class="nav-item" onclick="goToScreen('restaurants')" id="tab-restaurants">
+                <i class="fa-solid fa-utensils"></i>
+                <span>المطاعم</span>
             </button>
-            <button class="nav-item" onclick="goToScreen('order')" id="tab-order" title="طلب دليفري">
-                <i class="fa-solid fa-motorcycle"></i>
+            <button class="nav-item" onclick="goToScreen('other-stores')" id="tab-other-stores">
+                <i class="fa-solid fa-store"></i>
+                <span>المحلات</span>
             </button>
-            <button class="nav-item" onclick="goToScreen('contact')" id="tab-contact" title="اتصال">
-                <i class="fa-solid fa-phone"></i>
+            <button class="nav-item" onclick="goToScreen('cart')" id="tab-cart">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <span class="badge-cart-counter" id="footerCartBadge">0</span>
+                <span>السلة</span>
+            </button>
+            <button class="nav-item" onclick="goToScreen('about')" id="tab-about">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>عن المطور</span>
             </button>
         </div>
 
     </div>
 
-    <!-- نافذة تنبيه الروشتة -->
-    <div id="prescriptionModal" class="modal-overlay">
+    <!-- نافذة تعديل بيانات وصورة المحل من الداشبورد -->
+    <div id="editStoreModal" class="modal-overlay">
         <div class="modal-card">
-            <i class="fa-solid fa-circle-check"></i>
-            <h3>تم تجهيز طلبك بنجاح!</h3>
-            <p>لقد قمت بالتقاط صورة الروشتة 📸<br>سيفتح الواتساب الآن، <b>يرجى إرفاق الصورة في المحادثة مع الكابتن</b> ليشتري لك العلاج فوراً.</p>
-            <button onclick="proceedToWhatsApp()" class="btn-submit-order">
-                <i class="fa-brands fa-whatsapp"></i> فتح الواتساب الآن
-            </button>
+            <h3 style="font-size: 17px; font-weight: 900; margin-bottom: 6px; color: var(--primary);">تعديل بيانات المحل</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">قم بتعديل الاسم أو التصنيف أو مسار الصورة:</p>
+            
+            <input type="hidden" id="editStoreIndex">
+
+            <div class="input-group" style="text-align: right;">
+                <label>اسم المحل:</label>
+                <input type="text" id="editStoreNameInput">
+            </div>
+
+            <div class="input-group" style="text-align: right;">
+                <label>التصنيف:</label>
+                <input type="text" id="editStoreCatInput">
+            </div>
+
+            <div class="input-group" style="text-align: right;">
+                <label>اسم ملف الصورة أو الرابط:</label>
+                <input type="text" id="editStoreImgInput" placeholder="logo.png">
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: 14px;">
+                <button onclick="saveStoreEdit()" class="btn-submit-order" style="margin-top: 0;">حفظ التعديل</button>
+                <button onclick="closeEditStoreModal()" class="btn-order-inline" style="background: #e2e8f0; color: #000; justify-content: center; width: 35%;">إلغاء</button>
+            </div>
         </div>
     </div>
 
-    <!-- كود الجافاسكريبت التشغيلي -->
+    <!-- نافذة اختيار الحجم عند تعدد الأسعار -->
+    <div id="sizePickerModal" class="modal-overlay">
+        <div class="modal-card">
+            <div style="font-size: 30px; color: var(--accent-yellow); margin-bottom: 6px;"><i class="fa-solid fa-pizza-slice"></i></div>
+            <h3 id="sizePickerTitle" style="font-size: 17px; font-weight: 900; margin-bottom: 4px;"></h3>
+            <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 14px;">اختر الحجم المناسب لإضافته للسلة:</p>
+            <div id="sizeOptionsList"></div>
+            <button onclick="closeSizePickerModal()" class="btn-order-inline" style="width: 100%; justify-content: center; background: #e2e8f0; color: #000; margin-top: 10px;">إلغاء</button>
+        </div>
+    </div>
+
+    <!-- Firebase compat SDK: مناسب لملف HTML واحد بدون bundler -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+    <!-- كود الجافاسكريبت التشغيلي بالكامل -->
     <script>
-        const WHATSAPP_NUM = "201010322011";
-        let hasPrescriptionImage = false;
-        let generatedWhatsAppUrl = "";
+        // إعدادات Firebase الخاصة بمشروع tawsilety-app
+        const firebaseConfig = {
+            apiKey: "AIzaSyAHYyRxbH-GuxvgtFW4RO6nONNa4pr-G_4",
+            authDomain: "tawsilety-app.firebaseapp.com",
+            projectId: "tawsilety-app",
+            storageBucket: "tawsilety-app.firebasestorage.app",
+            messagingSenderId: "70472384326",
+            appId: "1:70472384326:web:f9a58b2c8a594c9611af47",
+            measurementId: "G-XK3PNVP7RQ"
+        };
 
-        // كود سحب وشد شريط الأقسام بالماوس واللمس (Drag to Scroll)
-        const slider = document.getElementById('scrollRow');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const ADMIN_UID = "0pFlgDQbmyTnHHTZrGeAGGCXsd53";
+        const sharedConfigRef = db.collection("appData").doc("config");
+        const ordersRef = db.collection("orders");
 
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('mouseleave', () => { isDown = false; });
-        slider.addEventListener('mouseup', () => { isDown = false; });
-        slider.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 1.5;
-            slider.scrollLeft = scrollLeft - walk;
-        });
+        let WHATSAPP_NUM = localStorage.getItem('deliv_wa') || "201010322011";
+        let CALL_NUM = localStorage.getItem('deliv_call') || "01010322011";
+        let ADMIN_EMAIL = "";
+        let currentAdminUser = null;
+        let sharedConfigReady = false;
+        let sharedConfigExists = false;
+        let unsubscribeSharedConfig = null;
+        let cart = JSON.parse(localStorage.getItem('deliv_cart')) || [];
+        let hasDirectRxImage = false;
 
-        // فلترة الكروت عند النقر على كبسولات الأقسام
-        function filterCards(cat, btn) {
-            document.querySelectorAll('.capsule-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        function isAuthorizedAdmin() {
+            return !!(auth.currentUser && auth.currentUser.uid === ADMIN_UID);
+        }
 
-            const cards = document.querySelectorAll('.modern-card[data-cat]');
-            cards.forEach(c => {
-                if (cat === 'all' || c.getAttribute('data-cat') === cat) {
-                    c.style.display = 'flex';
-                } else {
-                    c.style.display = 'none';
+        function applySharedSettings(settings = {}) {
+            if (settings.whatsapp) WHATSAPP_NUM = String(settings.whatsapp);
+            if (settings.call) CALL_NUM = String(settings.call);
+            localStorage.setItem('deliv_wa', WHATSAPP_NUM);
+            localStorage.setItem('deliv_call', CALL_NUM);
+            const headerCall = document.getElementById('headerCallBtn');
+            const bannerCall = document.getElementById('bannerCallBtn');
+            if (headerCall) headerCall.href = `tel:${CALL_NUM}`;
+            if (bannerCall) bannerCall.href = `tel:${CALL_NUM}`;
+        }
+
+        async function persistSharedData() {
+            if (!isAuthorizedAdmin()) {
+                alert("يلزم تسجيل الدخول بحساب الإدارة المصرح به لحفظ التعديلات.");
+                throw new Error("Admin permission required");
+            }
+            const payload = {
+                otherStores: otherStoresData,
+                restaurants: activeRestaurants,
+                settings: { whatsapp: WHATSAPP_NUM, call: CALL_NUM },
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+            await sharedConfigRef.set(payload, { merge: true });
+        }
+
+        function subscribeSharedData() {
+            if (unsubscribeSharedConfig) unsubscribeSharedConfig();
+            unsubscribeSharedConfig = sharedConfigRef.onSnapshot(async (snapshot) => {
+                sharedConfigReady = true;
+                sharedConfigExists = snapshot.exists;
+                if (!snapshot.exists) return;
+                const data = snapshot.data() || {};
+                if (Array.isArray(data.otherStores)) {
+                    otherStoresData = data.otherStores;
+                    localStorage.setItem('deliv_other_stores', JSON.stringify(otherStoresData));
                 }
+                if (Array.isArray(data.restaurants)) {
+                    activeRestaurants = data.restaurants;
+                    localStorage.setItem('deliv_restaurants', JSON.stringify(activeRestaurants));
+                }
+                applySharedSettings(data.settings || {});
+                renderRestaurantsList();
+                renderOtherStoresList();
+                if (document.getElementById('screen-dashboard')?.classList.contains('active-screen')) {
+                    renderOrdersLogList();
+                }
+            }, (error) => {
+                console.error("Firestore sync error:", error);
+                showToast("تعذر مزامنة البيانات. راجع قواعد Firestore.");
             });
         }
 
-        // التبديل بين شاشات التطبيق
+        async function initializeSharedDataIfNeeded() {
+            if (!isAuthorizedAdmin()) throw new Error("Admin permission required");
+            const snap = await sharedConfigRef.get();
+            if (!snap.exists) {
+                await sharedConfigRef.set({
+                    otherStores: otherStoresData,
+                    restaurants: activeRestaurants,
+                    settings: { whatsapp: WHATSAPP_NUM, call: CALL_NUM },
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                });
+            }
+            if (!unsubscribeSharedConfig) subscribeSharedData();
+        }
+
+        // السلة فقط تظل محلية على جهاز العميل؛ بيانات المتاجر والإعدادات وسجل الطلبات مركزية.
+
+
+        // قائمة المحلات الإضافية الافتراضية
+        const initialOtherStores = [
+            { name: "محل الوزير", category: "مشويات ومأكولات", img: "logo.png" },
+            { name: "محل باسم فهمي", category: "تجارة ومستلزمات", img: "logo.png" },
+            { name: "صيدلية الحياة", category: "صيدليات وأدوية", img: "logo.png" },
+            { name: "صيدلية المصطفي", category: "صيدليات وأدوية", img: "logo.png" },
+            { name: "محل انوار المصطفي", category: "تجارة ومستلزمات", img: "logo.png" },
+            { name: "مخبز وحلواني سمنة وعسل", category: "مخابز وحلواني", img: "logo.png" },
+            { name: "محمصات أنوار المصطفي", category: "محمصات ومكسرات", img: "logo.png" },
+            { name: "اسواق الندي", category: "سوبر ماركت وبقالة", img: "logo.png" },
+            { name: "مؤسسة منافذ الخير", category: "سلع ومواد غذائية", img: "logo.png" },
+            { name: "صيدلية د علا درويش", category: "صيدليات وأدوية", img: "logo.png" },
+            { name: "صيدلية دكتور محمود عبدالرحمن عبد المعبود", category: "صيدليات وأدوية", img: "logo.png" },
+            { name: "سوبر ماركت الصعيدي", category: "سوبر ماركت وبقالة", img: "logo.png" },
+            { name: "عطور باريس", category: "عطور ومستحضرات", img: "logo.png" },
+            { name: "اسواق السعداوي", category: "سوبر ماركت وتجارة", img: "logo.png" }
+        ];
+
+        let otherStoresData = JSON.parse(localStorage.getItem('deliv_other_stores')) || initialOtherStores;
+
+        // قاعدة بيانات المطاعم السبعة كاملة (مع إضافة مطعم الهندي بجميع أقسامه)
+        const initialRestaurants = [
+            {
+                id: "alhendi",
+                name: "مطعم الهندي",
+                desc: "وجبات، شاورما، حواوشي، مكرونات، كريب، مشويات وساندوتشات",
+                img: "res-hendi.png",
+                categories: [
+                    {
+                        name: "1. الوجبات والإضافات",
+                        items: [
+                            { name: "كاساديا", price: 120 },
+                            { name: "وجبة شاورما عربي", price: 100 },
+                            { name: "واجبة شيش", price: 150 },
+                            { name: "واجبة الهندي", price: 180 },
+                            { name: "وجبة فرايد تشيكن", price: 110 },
+                            { name: "طلب كبدة", price: 70 }
+                        ]
+                    },
+                    {
+                        name: "2. قسم الساندوتشات السوري",
+                        items: [
+                            { name: "ساندوتش بانيه سوري", price: 45 },
+                            { name: "ساندوتش كبدة سوري", price: 30 },
+                            { name: "ساندوتش سوري برجر", price: 30 },
+                            { name: "ساندوتش سوري شيش", price: 60 },
+                            { name: "ساندوتش شاورما سوري", price: 45 },
+                            { name: "ساندوتش سجق سوري", price: 35 },
+                            { name: "ساندوتش سوري كفتة", price: 35 },
+                            { name: "ساندوتش بطاطس سوري", price: 25 },
+                            { name: "ساندوتش سوري فاهيتا", price: 60 },
+                            { name: "سوري بانيه مع بطاطس", price: 50 }
+                        ]
+                    },
+                    {
+                        name: "3. قسم الحواوشي",
+                        items: [
+                            { name: "حواوشي سادة", price: 15 },
+                            { name: "حواوشي جبنة", price: 25 },
+                            { name: "حواوشي فراخ", price: 50 },
+                            { name: "حواوشي كبدة وقوانص", price: 30 },
+                            { name: "حواوشي دبل جبنة", price: 45 },
+                            { name: "حواوشي سجق", price: 30 },
+                            { name: "حواوشي دبل", price: 30 }
+                        ]
+                    },
+                    {
+                        name: "4. قسم المكرونات",
+                        items: [
+                            { name: "مكرونة شاورما", price: 70 },
+                            { name: "مكرونة سجق", price: 50 },
+                            { name: "مكرونة كفتة", price: 70 },
+                            { name: "مكرونة بانيه", price: 70 },
+                            { name: "مكرونة برجر", price: 50 },
+                            { name: "مكرونة فاهيتا", price: 90 },
+                            { name: "مكرونة كبدة", price: 50 },
+                            { name: "مكرونة ميكس", price: 90 }
+                        ]
+                    },
+                    {
+                        name: "5. قسم الساندوتشات (فينو وبلدي)",
+                        items: [
+                            { name: "برجر", price: 30 },
+                            { name: "شاورما فينو", price: 40 },
+                            { name: "بانيه بلدي", price: 35 },
+                            { name: "ساندوتش سجق بلدي", price: 15 },
+                            { name: "كبدة بلدي", price: 15 },
+                            { name: "ساندوتش شيش فينو", price: 50 },
+                            { name: "كفتة بلدي", price: 25 },
+                            { name: "برجر محشو", price: 45 },
+                            { name: "فاهيتا فينو", price: 45 },
+                            { name: "فرايد تشيكن سنجل", price: 55 },
+                            { name: "كفتة فينو", price: 30 },
+                            { name: "كبدة فينو", price: 20 },
+                            { name: "برجر دبل", price: 50 },
+                            { name: "بطاطس بلدي", price: 10 },
+                            { name: "بانيه فريش فينو", price: 40 },
+                            { name: "شاورما بلدي", price: 35 },
+                            { name: "فرايد تشيكن دبل", price: 75 },
+                            { name: "سجق فينو", price: 20 },
+                            { name: "بطاطس فينو", price: 20 },
+                            { name: "برجر إسماج دبل", price: 70 }
+                        ]
+                    },
+                    {
+                        name: "6. قسم الكريب",
+                        items: [
+                            { name: "كريب بانيه فريش", price: 85 },
+                            { name: "كريب برجر", price: 65 },
+                            { name: "كريب سجق", price: 75 },
+                            { name: "كريب شيش", price: 110 },
+                            { name: "كريب بانيه بالبطاطس", price: 95 },
+                            { name: "كريب فاهيتا", price: 100 },
+                            { name: "كريب كفتة", price: 100 },
+                            { name: "كريب ميكس الهندي", price: 120 },
+                            { name: "كريب بطاطس", price: 50 },
+                            { name: "كريب شاورما", price: 85 },
+                            { name: "كريب كبدة", price: 65 },
+                            { name: "كريب بانيه بالقطع", price: 105 },
+                            { name: "كريب ميكس", price: 110 }
+                        ]
+                    },
+                    {
+                        name: "7. قسم الفراخ والكفتة",
+                        items: [
+                            { name: "فراخ تكا", price: 85 },
+                            { name: "كفتة هندي", price: 100 },
+                            { name: "فراخ شيش", price: 85 },
+                            { name: "سجق كفتة", price: 30 },
+                            { name: "كفتة", price: 90 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "zaeem",
+                name: "مطعم الزعيم (بيتزا وكريب)",
+                desc: "خدمة 24 ساعة - بيتزا، كريب، حواوشي، سوري",
+                img: "res-zaeem.png",
+                categories: [
+                    {
+                        name: "ركن البيتزا",
+                        items: [
+                            { name: "بيتزا بالسوسيس", sizes: { "صغير": 70, "وسط": 80, "كبير": 90 } },
+                            { name: "بيتزا بالتونة", sizes: { "صغير": 70, "وسط": 110, "كبير": 120 } },
+                            { name: "بيتزا باللحمة", sizes: { "صغير": 70, "وسط": 80, "كبير": 90 } },
+                            { name: "بيتزا بالسجق", sizes: { "صغير": 70, "وسط": 80, "كبير": 90 } },
+                            { name: "بيتزا بالفراخ", sizes: { "صغير": 80, "وسط": 90, "كبير": 100 } },
+                            { name: "بيتزا جمبري", sizes: { "صغير": 130, "وسط": 140, "كبير": 150 } },
+                            { name: "بيتزا جبنة رومي وخضروات", sizes: { "صغير": 70, "وسط": 80, "كبير": 90 } },
+                            { name: "بيتزا الزعيم المخصوصة", sizes: { "صغير": 80, "وسط": 90, "كبير": 100 } }
+                        ]
+                    },
+                    {
+                        name: "ركن الكريب",
+                        items: [
+                            { name: "كريب بانية", sizes: { "صغير": 70, "وسط": 80, "كبير": 100 } },
+                            { name: "كريب بطاطس", sizes: { "صغير": 45, "وسط": 55, "كبير": 65 } },
+                            { name: "كريب شاورما فراخ", sizes: { "صغير": 80, "وسط": 90, "كبير": 100 } },
+                            { name: "كريب فاهيتا فراخ", sizes: { "صغير": 80, "وسط": 90, "كبير": 100 } },
+                            { name: "كريب بطاطس سوري", sizes: { "صغير": 70, "وسط": 80, "كبير": 90 } },
+                            { name: "كريب شيكولاتة", sizes: { "صغير": 70, "وسط": 80, "كبير": 90 } },
+                            { name: "كريب فواكه", sizes: { "صغير": 70, "وسط": 80, "كبير": 90 } }
+                        ]
+                    },
+                    {
+                        name: "ركن الحواوشي والسوري",
+                        items: [
+                            { name: "حواوشي إسكندراني صغير", price: 20 },
+                            { name: "حواوشي إسكندراني وسط", price: 30 },
+                            { name: "حواوشي إسكندراني كبير", price: 50 },
+                            { name: "حواوشي إسكندراني بالسجق", price: 60 },
+                            { name: "حواوشي بلدي", price: 70 },
+                            { name: "ساندوتش بانيه أو برجر", price: 40 },
+                            { name: "ركن الصواريخ (حسب الطلب)", price: 100 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "broast",
+                name: "مطعم بروست",
+                desc: "وجبات بروست، كرسبي، شاورما، وسندوتشات",
+                img: "res-broast.png",
+                categories: [
+                    {
+                        name: "قسم البروست والوجبات",
+                        items: [
+                            { name: "وجبة أطفال", price: 60 },
+                            { name: "وجبة 2 قطعة بروست", price: 110 },
+                            { name: "وجبة 3 قطع بروست", price: 160 },
+                            { name: "وجبة 4 قطع بروست", price: 215 },
+                            { name: "وجبة 6 قطع بروست", price: 320 },
+                            { name: "وجبة 8 قطع بروست", price: 420 },
+                            { name: "وجبة 12 قطعة بروست عائلية", price: 630 },
+                            { name: "فتة شاورما", price: 70 },
+                            { name: "أرز ريزو", price: 60 },
+                            { name: "كريسبي مع بطاطس", price: 60 }
+                        ]
+                    },
+                    {
+                        name: "قسم السندوتشات والكريب",
+                        items: [
+                            { name: "ساندوتش شاورما فراخ سوري", price: 50 },
+                            { name: "ساندوتش شاورما وسط", price: 70 },
+                            { name: "ساندوتش شاورما كبير", price: 100 },
+                            { name: "تشيكن برجر فراخ / لحمة", price: 50 },
+                            { name: "ساندوتش فاهيتا", price: 60 },
+                            { name: "كريب شاورما", price: 100 },
+                            { name: "كريب بانيه", price: 90 },
+                            { name: "كساديا", price: 150 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "wazeer",
+                name: "مطعم الوزير للمشويات",
+                desc: "شاورما، كبدة، حواوشي، وسندوتشات بانيه",
+                img: "res-wazeer.png",
+                categories: [
+                    {
+                        name: "المشويات والأصناف",
+                        items: [
+                            { name: "شاورما / سوري بانيه", price: 40 },
+                            { name: "سوري بطاطس", price: 30 },
+                            { name: "حواوشي كبدة وقوانص", price: 15 },
+                            { name: "حواوشي لحمة", price: 10 },
+                            { name: "برجر بيض", price: 30 },
+                            { name: "برجر عادي", price: 20 },
+                            { name: "كبدة إسكندراني عيش", price: 10 },
+                            { name: "كبدة فينو", price: 20 },
+                            { name: "كريبات مكس", price: 80 },
+                            { name: "ساندوتش بطاطس فينو", price: 20 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "quds",
+                name: "مطعم القدس",
+                desc: "فراخ مشوية، كبدة، حواوشي، وهمبرجر",
+                img: "res-quds.png",
+                categories: [
+                    {
+                        name: "المشويات والوجبات",
+                        items: [
+                            { name: "فراخ مشوية كاملة", price: 350 },
+                            { name: "كريب فراخ بانيه", price: 80 },
+                            { name: "رغيف كبدة بلدي", price: 15 },
+                            { name: "رغيف كبدة فينو", price: 20 },
+                            { name: "حواوشي بلدي", price: 25 },
+                            { name: "حواوشي مجمد", price: 15 },
+                            { name: "همبرجر", price: 60 },
+                            { name: "سوري بانيه", price: 50 },
+                            { name: "سوري كبدة", price: 35 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "takkacrep",
+                name: "مطعم تكة كريب",
+                desc: "كريب بانيه، كريب ابو وعد، وجبات بروست وحواوشي",
+                img: "res-takka.png",
+                categories: [
+                    {
+                        name: "الأصناف والمنيو المعتمد",
+                        items: [
+                            { name: "كريب بانيه", price: 90 },
+                            { name: "كريب ابو وعد", price: 120 },
+                            { name: "فينو كبدة", price: 20 },
+                            { name: "كبدة بلدي", price: 15 },
+                            { name: "وجبة بروست 2 قطعة", price: 130 },
+                            { name: "وجبة بانيه", price: 120 },
+                            { name: "وجبة فراخ", price: 90 },
+                            { name: "سوري", price: 50 },
+                            { name: "بانيه فينو", price: 30 },
+                            { name: "حواوشي", price: 150 },
+                            { name: "سوري بطاطس", price: 40 }
+                        ]
+                    }
+                ]
+            },
+            {
+                id: "asdeqaa",
+                name: "مطعم الأصدقاء (كشري وحلواني)",
+                desc: "علب كشري، طواجن كبدة وفراخ",
+                img: "res-asdeqaa.png",
+                categories: [
+                    {
+                        name: "الكشري والطواجن",
+                        items: [
+                            { name: "سندوتش كشري", price: 7 },
+                            { name: "علبة صغيرة", price: 15 },
+                            { name: "علبة دوبل", price: 20 },
+                            { name: "علبة مخصوص", price: 25 },
+                            { name: "علبة سوبر", price: 30 },
+                            { name: "طاجن كبدة", price: 30 },
+                            { name: "طاجن فراخ", price: 35 },
+                            { name: "طبق ورد", price: 8 },
+                            { name: "طبق عدس", price: 8 }
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        let activeRestaurants = JSON.parse(localStorage.getItem('deliv_restaurants')) || initialRestaurants;
+
+        // تهيئة التطبيق عند الفتح
+        window.addEventListener('DOMContentLoaded', () => {
+            subscribeSharedData();
+            auth.onAuthStateChanged(user => {
+                currentAdminUser = user;
+                if (user && user.uid === ADMIN_UID) {
+                    ADMIN_EMAIL = user.email || "";
+                    subscribeOrders();
+                } else {
+                    cachedRemoteOrders = [];
+                    renderOrdersLogList();
+                }
+            });
+            updateCartCounterBadges();
+            renderRestaurantsList();
+            renderOtherStoresList();
+
+            setTimeout(() => {
+                const splash = document.getElementById('splashScreen');
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                    if (!sessionStorage.getItem('entered_role')) {
+                        document.getElementById('roleSelectModal').style.display = 'flex';
+                    }
+                }, 500);
+            }, 3000);
+        });
+
+        function enterAsCustomer() {
+            sessionStorage.setItem('entered_role', 'customer');
+            document.getElementById('roleSelectModal').style.display = 'none';
+        }
+
+        function openDeveloperLoginModal() {
+            document.getElementById('roleSelectModal').style.display = 'none';
+            document.getElementById('devLoginModal').style.display = 'flex';
+        }
+
+        function closeDevLoginModal() {
+            document.getElementById('devLoginModal').style.display = 'none';
+        }
+
+        async function verifyDeveloperAuth() {
+            const email = document.getElementById('devEmailInput').value.trim();
+            const pass = document.getElementById('devPassInput').value;
+
+            if (!email || !pass) {
+                alert("اكتب البريد الإلكتروني وكلمة المرور.");
+                return;
+            }
+            try {
+                const credential = await auth.signInWithEmailAndPassword(email, pass);
+                if (credential.user.uid !== ADMIN_UID) {
+                    await auth.signOut();
+                    alert("هذا الحساب غير مصرح له بدخول لوحة الإدارة.");
+                    return;
+                }
+                currentAdminUser = credential.user;
+                ADMIN_EMAIL = credential.user.email || "";
+                await initializeSharedDataIfNeeded();
+                closeDevLoginModal();
+                document.getElementById('devPassInput').value = "";
+                loadDashboardSettings();
+                goToScreen('dashboard');
+                showToast("تم تسجيل الدخول ومزامنة البيانات بنجاح ✅");
+            } catch (error) {
+                console.error(error);
+                alert("تعذر تسجيل الدخول. تأكد من الإيميل وكلمة المرور، وأن حساب Firebase UID هو حساب الإدارة الصحيح.");
+            }
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toastNotice');
+            toast.innerText = text;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2200);
+        }
+
+        // عرض قائمة المطاعم
+        function renderRestaurantsList() {
+            const container = document.getElementById('dynamicRestaurantsContainer');
+            const selects = [document.getElementById('adminRestaurantSelect'), document.getElementById('adminRestaurantManageSelect')].filter(Boolean);
+            if (container) container.innerHTML = '';
+            selects.forEach(sel => { const old=sel.value; sel.innerHTML=activeRestaurants.map(res=>`<option value="${escapeHtml(res.id)}">${escapeHtml(res.name)}</option>`).join(''); if(activeRestaurants.some(r=>r.id===old))sel.value=old; });
+            activeRestaurants.forEach(res => {
+                let categoriesHtml = '';
+                (res.categories||[]).forEach(cat => {
+                    categoriesHtml += `<div class="sub-cat-badge">${escapeHtml(cat.name)}</div>`;
+                    (cat.items||[]).forEach(item => {
+                        const itemName=escapeHtml(item.name);
+                        if (item.sizes) {
+                            const sizesLabel = Object.entries(item.sizes).map(([size, price]) => `${escapeHtml(size)}: ${price}ج`).join(' / ');
+                            categoriesHtml += `<div class="menu-row"><span>${itemName}</span><span style="font-weight:700;color:var(--primary)">${sizesLabel}</span><span class="item-add-tag" onclick='openSizePicker(${JSON.stringify(res.name)},${JSON.stringify(item.name)},${JSON.stringify(item.sizes)})'>+ أضف للسلة</span></div>`;
+                        } else {
+                            categoriesHtml += `<div class="menu-row"><span>${itemName}</span><span style="font-weight:700;color:var(--primary)">${escapeHtml(item.price)} ج</span><span class="item-add-tag" onclick='addItemToCart(${JSON.stringify(res.name)},${JSON.stringify(item.name)},${Number(item.price)||0})'>+ أضف للسلة</span></div>`;
+                        }
+                    });
+                });
+                if (container) container.innerHTML += `<div class="accordion-box"><button class="accordion-header" onclick="toggleMenu('menu-${escapeHtml(res.id)}')"><div style="display:flex;align-items:center;gap:10px"><img src="${escapeHtml(res.img||'logo.png')}" class="res-thumb-img" alt="${escapeHtml(res.name)}" onerror="this.src='logo.png'"><div><h4>${escapeHtml(res.name)}</h4><p>${escapeHtml(res.desc||'')}</p></div></div><i class="fa-solid fa-chevron-down" style="color:var(--primary)"></i></button><div id="menu-${escapeHtml(res.id)}" class="accordion-body">${categoriesHtml}</div></div>`;
+            });
+            loadRestaurantEditor();
+        }
+
+        function currentManagedRestaurant() {
+            const id=document.getElementById('adminRestaurantManageSelect')?.value || document.getElementById('adminRestaurantSelect')?.value;
+            return activeRestaurants.find(r=>r.id===id) || activeRestaurants[0];
+        }
+        function loadRestaurantEditor() {
+            const res=currentManagedRestaurant(); if(!res)return;
+            const name=document.getElementById('editRestaurantName'); if(!name)return;
+            name.value=res.name||''; document.getElementById('editRestaurantDesc').value=res.desc||''; document.getElementById('editRestaurantImg').value=res.img||'';
+            const cats=document.getElementById('restaurantCategorySelect');
+            if(cats){ const old=cats.value; cats.innerHTML=(res.categories||[]).map((c,i)=>`<option value="${i}">${escapeHtml(c.name)}</option>`).join(''); if(res.categories?.[Number(old)])cats.value=old; }
+            renderRestaurantItemsEditor();
+        }
+        async function saveRestaurantDetails() {
+            const res=currentManagedRestaurant(); if(!res)return;
+            const name=document.getElementById('editRestaurantName').value.trim(); if(!name){alert('اسم المطعم مطلوب');return;}
+            res.name=name; res.desc=document.getElementById('editRestaurantDesc').value.trim(); res.img=document.getElementById('editRestaurantImg').value.trim()||'logo.png';
+            await saveRestaurantsAndRefresh();
+        }
+        async function deleteRestaurant() {
+            const res=currentManagedRestaurant(); if(!res||!confirm(`تأكيد حذف ${res.name} من التطبيق؟`))return;
+            activeRestaurants=activeRestaurants.filter(r=>r.id!==res.id); await saveRestaurantsAndRefresh();
+        }
+        function renderRestaurantItemsEditor() {
+            const box=document.getElementById('restaurantItemsEditor'); if(!box)return;
+            const res=currentManagedRestaurant(); if(!res){box.innerHTML='<p>لا توجد مطاعم.</p>';return;}
+            const catIndex=Number(document.getElementById('restaurantCategorySelect')?.value||0);
+            const cats=res.categories||[];
+            box.innerHTML=cats.map((cat,ci)=>`<div style="margin:12px 0 6px;font-weight:900;color:var(--primary)">${escapeHtml(cat.name)}</div>`+(cat.items||[]).map((item,ii)=>{
+                const priceText=item.sizes?Object.entries(item.sizes).map(([k,v])=>`${k}:${v}`).join(', '):String(item.price??'');
+                return `<div class="admin-store-manage-row" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center"><input id="riName${ci}_${ii}" value="${escapeHtml(item.name)}" style="flex:2;min-width:110px"><input id="riPrice${ci}_${ii}" value="${escapeHtml(priceText)}" style="flex:2;min-width:130px" placeholder="السعر أو صغير:60، كبير:90"><button class="admin-btn-action" onclick="saveRestaurantItem(${ci},${ii})">حفظ</button><button class="admin-btn-action" style="background:#fee2e2;color:#b91c1c" onclick="deleteRestaurantItem(${ci},${ii})">حذف</button></div>`;
+            }).join('')).join('');
+        }
+        function parsePriceField(text) {
+            const value=String(text||'').trim();
+            if(value.includes(':')) { const sizes={}; value.split(/[،,]/).forEach(part=>{const m=part.trim().match(/^(.+?)\s*:\s*(\d+(?:\.\d+)?)$/);if(m)sizes[m[1].trim()]=Number(m[2]);}); if(Object.keys(sizes).length)return {sizes}; }
+            const nums=value.match(/\d+(?:\.\d+)?/g)||[]; if(nums.length>1)return {sizes:{'صغير':Number(nums[0]),'وسط':Number(nums[1]),'كبير':Number(nums[2]??nums[1])}};
+            return {price:Number(nums[0]||0)};
+        }
+        async function saveRestaurantItem(ci,ii) {
+            const res=currentManagedRestaurant(), item=res?.categories?.[ci]?.items?.[ii]; if(!item)return;
+            const name=document.getElementById(`riName${ci}_${ii}`).value.trim(), price=document.getElementById(`riPrice${ci}_${ii}`).value.trim(); if(!name||!price){alert('اكتب اسم الصنف والسعر');return;}
+            item.name=name; Object.assign(item,parsePriceField(price)); if(item.sizes)delete item.price; else delete item.sizes;
+            await saveRestaurantsAndRefresh();
+        }
+        async function deleteRestaurantItem(ci,ii) {
+            const res=currentManagedRestaurant(); if(!res||!confirm('تأكيد حذف الصنف؟'))return;
+            res.categories[ci].items.splice(ii,1); await saveRestaurantsAndRefresh();
+        }
+        async function addRestaurantCategoryIfMissing(res) { if(!res.categories)res.categories=[]; if(!res.categories.length)res.categories.push({name:'المنيو',items:[]}); }
+        async function saveRestaurantsAndRefresh() {
+            localStorage.setItem('deliv_restaurants',JSON.stringify(activeRestaurants)); renderRestaurantsList();
+            try { await persistSharedData(); showToast('تم حفظ بيانات المطاعم والمنيو مركزيًا ✅'); } catch(e) { showToast('التعديل محلي فقط؛ تعذر الحفظ المركزي'); }
+        }
+
+        // عرض قائمة المحلات الإضافية وتحديث الداشبورد
+        function renderOtherStoresList() {
+            const container = document.getElementById('otherStoresListContainer');
+            const adminContainer = document.getElementById('adminStoresManageList');
+            container.innerHTML = '';
+            if (adminContainer) adminContainer.innerHTML = '';
+
+            otherStoresData.forEach((store, index) => {
+                if (!Array.isArray(store.items)) store.items = [];
+                container.innerHTML += `
+                    <div class="modern-card" onclick="openOtherStoreOrder('${store.name}', '${store.category}')">
+                        <div class="card-details">
+                            <span class="card-tag tag-other">${store.category}</span>
+                            <div class="card-title">${store.name}</div>
+                            <div class="card-subtitle">${(store.items||[]).length ? (store.items||[]).map(it=>`${escapeHtml(it.name)}${it.price?` — ${escapeHtml(it.price)} ج`:''}`).join(' • ') : 'اضغط هنا واكتب الأصناف التي تود شراءها.'}</div>
+                            <button class="btn-order-inline" style="background: #7e22ce;"><i class="fa-solid fa-pen"></i> اطلب من هذا المحل</button>
+                        </div>
+                        <div class="card-image-box">
+                            <img src="${store.img || 'logo.png'}" alt="${store.name}" onerror="this.src='logo.png'">
+                        </div>
+                    </div>
+                `;
+
+                if (adminContainer) {
+                    adminContainer.innerHTML += `
+                        <div class="admin-store-manage-row">
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <img src="${store.img || 'logo.png'}" style="width: 28px; height: 28px; border-radius: 6px; object-fit: contain;" onerror="this.src='logo.png'">
+                                <div>
+                                    <strong style="color: var(--text-dark);">${store.name}</strong>
+                                    <div style="font-size: 11px; color: var(--text-muted);">${store.category}</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 6px;">
+                                <button onclick="openEditStoreModal(${index})" class="admin-btn-action" style="background: var(--primary-soft); color: var(--primary);">✏️ تعديل</button>
+                                <button onclick="deleteStore(${index})" class="admin-btn-action" style="background: #fee2e2; color: #b91c1c;">🗑️ حذف</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            refreshStoreItemsSelect();
+        }
+
+        // إدارة عناصر المحلات
+        function renderStoreItemsEditor() {
+            const sel = document.getElementById('adminStoreItemsSelect');
+            const box = document.getElementById('storeItemsEditor');
+            if (!sel || !box) return;
+            const store = otherStoresData[Number(sel.value)];
+            if (!store) { box.innerHTML = '<p>أضف محلًا أولًا.</p>'; return; }
+            store.items = Array.isArray(store.items) ? store.items : [];
+            box.innerHTML = store.items.length ? store.items.map((item, i) => `<div class="admin-store-manage-row" style="gap:8px;flex-wrap:wrap"><input id="storeItemName${i}" value="${escapeHtml(item.name || '')}" style="flex:2;min-width:120px"><input id="storeItemPrice${i}" value="${escapeHtml(item.price ?? '')}" placeholder="السعر" style="width:90px"><button class="admin-btn-action" onclick="saveStoreItem(${i})">حفظ</button><button class="admin-btn-action" style="background:#fee2e2;color:#b91c1c" onclick="deleteStoreItem(${i})">حذف</button></div>`).join('') : '<p style="color:var(--text-muted)">لا توجد عناصر مضافة لهذا المحل حتى الآن.</p>';
+        }
+        function refreshStoreItemsSelect() {
+            const sel = document.getElementById('adminStoreItemsSelect'); if (!sel) return;
+            const old = sel.value;
+            sel.innerHTML = otherStoresData.map((st,i)=>`<option value="${i}">${escapeHtml(st.name)}</option>`).join('');
+            if (otherStoresData.length && Number(old) < otherStoresData.length) sel.value = old;
+            renderStoreItemsEditor();
+        }
+        function escapeHtml(value) { return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+        async function addStoreItem() {
+            const idx=Number(document.getElementById('adminStoreItemsSelect').value), name=document.getElementById('newStoreItemName').value.trim(), price=document.getElementById('newStoreItemPrice').value.trim();
+            const store=otherStoresData[idx]; if(!store||!name){alert('اختار محل واكتب اسم العنصر.');return;}
+            store.items=Array.isArray(store.items)?store.items:[]; store.items.push({name,price});
+            document.getElementById('newStoreItemName').value=''; document.getElementById('newStoreItemPrice').value='';
+            await saveStoresAndRefresh();
+        }
+        async function saveStoreItem(i) {
+            const store=otherStoresData[Number(document.getElementById('adminStoreItemsSelect').value)]; if(!store)return;
+            store.items=Array.isArray(store.items)?store.items:[];
+            store.items[i]={name:document.getElementById('storeItemName'+i).value.trim(),price:document.getElementById('storeItemPrice'+i).value.trim()};
+            if(!store.items[i].name){alert('اسم العنصر مطلوب');return;} await saveStoresAndRefresh();
+        }
+        async function deleteStoreItem(i) {
+            const store=otherStoresData[Number(document.getElementById('adminStoreItemsSelect').value)]; if(!store||!confirm('حذف العنصر؟'))return;
+            store.items.splice(i,1); await saveStoresAndRefresh();
+        }
+        async function saveStoresAndRefresh() {
+            localStorage.setItem('deliv_other_stores',JSON.stringify(otherStoresData)); renderOtherStoresList(); refreshStoreItemsSelect();
+            try { await persistSharedData(); showToast('تم حفظ المحلات وعناصرها مركزيًا ✅'); } catch(e) { showToast('التعديل محلي فقط؛ تعذر الحفظ المركزي'); }
+        }
+
+        // ======================== تعديل المحلات في الداشبورد ========================
+        function openEditStoreModal(index) {
+            const store = otherStoresData[index];
+            document.getElementById('editStoreIndex').value = index;
+            document.getElementById('editStoreNameInput').value = store.name;
+            document.getElementById('editStoreCatInput').value = store.category;
+            document.getElementById('editStoreImgInput').value = store.img || 'logo.png';
+            document.getElementById('editStoreModal').style.display = 'flex';
+        }
+
+        function closeEditStoreModal() {
+            document.getElementById('editStoreModal').style.display = 'none';
+        }
+
+        function saveStoreEdit() {
+            const index = document.getElementById('editStoreIndex').value;
+            const newName = document.getElementById('editStoreNameInput').value.trim();
+            const newCat = document.getElementById('editStoreCatInput').value.trim() || 'خدمات ومحلات';
+            const newImg = document.getElementById('editStoreImgInput').value.trim() || 'logo.png';
+
+            if (!newName) {
+                alert("يرجى كتابة اسم المحل!");
+                return;
+            }
+
+            otherStoresData[index] = { name: newName, category: newCat, img: newImg };
+            localStorage.setItem('deliv_other_stores', JSON.stringify(otherStoresData));
+            renderOtherStoresList();
+            closeEditStoreModal();
+            persistSharedData().then(() => showToast("تم تعديل المحل وحفظه مركزيًا ✅"))
+                .catch(() => showToast("تم التعديل محليًا فقط؛ راجع الاتصال والصلاحيات."));
+        }
+
+        function deleteStore(idx) {
+            if (confirm("هل أنت متأكد من حذف هذا المحل؟")) {
+                otherStoresData.splice(idx, 1);
+                localStorage.setItem('deliv_other_stores', JSON.stringify(otherStoresData));
+                renderOtherStoresList();
+                persistSharedData().then(() => showToast("تم حذف المحل من جميع الأجهزة ✅"))
+                    .catch(() => showToast("تعذر الحفظ المركزي؛ راجع الصلاحيات."));
+            }
+        }
+
+        function addNewStoreFromDashboard() {
+            const name = document.getElementById('newStoreName').value.trim();
+            const cat = document.getElementById('newStoreCategory').value.trim() || 'خدمات ومحلات';
+            const img = document.getElementById('newStoreImg').value.trim() || 'logo.png';
+
+            if (!name) { alert("يرجى كتابة اسم المحل!"); return; }
+
+            otherStoresData.unshift({ name, category: cat, img });
+            localStorage.setItem('deliv_other_stores', JSON.stringify(otherStoresData));
+            renderOtherStoresList();
+            persistSharedData().then(() => showToast("تمت إضافة المحل ومزامنته ✅"))
+                .catch(() => showToast("تعذر الحفظ المركزي؛ راجع الصلاحيات."));
+            document.getElementById('newStoreName').value = '';
+            document.getElementById('newStoreCategory').value = '';
+            alert(`تمت إضافة محـل (${name}) للتطبيق بنجاح ✅`);
+        }
+
+        // ======================== وظائف سلة المشتريات ========================
+        function openSizePicker(resName, itemName, sizesObj) {
+            document.getElementById('sizePickerTitle').innerText = `${itemName} (${resName})`;
+            const list = document.getElementById('sizeOptionsList');
+            list.innerHTML = '';
+
+            for (const [sizeName, price] of Object.entries(sizesObj)) {
+                list.innerHTML += `
+                    <div class="size-option-btn" onclick="addItemToCart('${resName}', '${itemName} [${sizeName}]', ${price}); closeSizePickerModal();">
+                        <span>حجم: ${sizeName}</span>
+                        <span style="color: var(--primary);">${price} ج</span>
+                    </div>
+                `;
+            }
+            document.getElementById('sizePickerModal').style.display = 'flex';
+        }
+
+        function closeSizePickerModal() {
+            document.getElementById('sizePickerModal').style.display = 'none';
+        }
+
+        function addItemToCart(storeName, itemName, price) {
+            const cleanPrice = Number(String(price).replace(/[^\d.]/g, '')) || 0;
+            const existing = cart.find(i => i.store === storeName && i.name === itemName);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ store: storeName, name: itemName, price: cleanPrice, qty: 1 });
+            }
+
+            saveCartState();
+            showToast(`تمت إضافة (${itemName}) للسلة 🛒`);
+        }
+
+        function updateCartItemQty(index, delta) {
+            cart[index].qty += delta;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            saveCartState();
+            renderCartScreen();
+        }
+
+        function saveCartState() {
+            localStorage.setItem('deliv_cart', JSON.stringify(cart));
+            updateCartCounterBadges();
+        }
+
+        function updateCartCounterBadges() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('headerCartBadge').innerText = totalQty;
+            document.getElementById('footerCartBadge').innerText = totalQty;
+            document.querySelectorAll('.screenCartCount').forEach(el => el.innerText = totalQty);
+        }
+
+        function renderCartScreen() {
+            const listContainer = document.getElementById('cartItemsContainer');
+            const checkoutBox = document.getElementById('cartCheckoutBox');
+            const emptyView = document.getElementById('cartEmptyView');
+            listContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                checkoutBox.style.display = 'none';
+                emptyView.style.display = 'block';
+                return;
+            }
+
+            checkoutBox.style.display = 'block';
+            emptyView.style.display = 'none';
+
+            let grandTotal = 0;
+            cart.forEach((item, index) => {
+                const sub = item.price * item.qty;
+                grandTotal += sub;
+                listContainer.innerHTML += `
+                    <div class="cart-item-row">
+                        <div>
+                            <div style="font-weight: 800; font-size: 14px; color: var(--text-dark);">${item.name}</div>
+                            <div style="font-size: 11.5px; color: var(--text-muted);">${item.store} | ${item.price} ج</div>
+                        </div>
+                        <div class="cart-qty-ctrl">
+                            <button onclick="updateCartItemQty(${index}, -1)" class="cart-qty-btn">-</button>
+                            <span style="font-weight: 900; font-size: 14px; min-width: 16px; text-align: center;">${item.qty}</span>
+                            <button onclick="updateCartItemQty(${index}, 1)" class="cart-qty-btn">+</button>
+                            <span style="font-weight: 900; color: var(--primary); min-width: 50px; text-align: left;">${sub} ج</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cartTotalPrice').innerText = `${grandTotal} جنيه`;
+        }
+
+        function submitCartToWhatsApp() {
+            if (cart.length === 0) return;
+
+            const name = document.getElementById('cartCustName').value.trim();
+            const phone = document.getElementById('cartCustPhone').value.trim();
+            const drop = document.getElementById('cartCustDrop').value.trim();
+            const notes = document.getElementById('cartCustNotes').value.trim();
+
+            if (!name || !phone || !drop) {
+                alert("يرجى ملء الاسم ورقم الهاتف وعنوان التوصيل كاملاً!");
+                return;
+            }
+
+            let grandTotal = 0;
+            let itemsText = "";
+            cart.forEach((item, i) => {
+                const sub = item.price * item.qty;
+                grandTotal += sub;
+                itemsText += `\n${i+1}. *${item.name}* (من: ${item.store})\n   الكمية: ${item.qty} × السعر: ${item.price}ج = *${sub} ج*`;
+            });
+
+            const msg = 
+`🛵 *فاتورة أوردر دليفري جديدة - توصليتي*
+━━━━━━━━━━━━━━━━━━
+
+👤 *اسم العميل:*
+${name}
+
+📱 *رقم الهاتف:*
+${phone}
+
+🏁 *عنوان التوصيل:*
+${drop}
+${notes ? `\n📝 *ملاحظات العميل:*\n${notes}\n` : ''}
+📋 *الأصناف المطلوبة:*
+${itemsText}
+
+━━━━━━━━━━━━━━━━━━
+💰 *إجمالي الفاتورة:* ${grandTotal} جنيه
+_(يضاف سعر خدمة التوصيل حسب المشوار)_
+⏰ *يرجى تأكيد الاستلام والتجهيز فوراً*`;
+
+            saveOrderLogRecord({ date: new Date().toLocaleString('ar-EG'), name, phone, pickup: "سلة مشتريات متعددة", drop, details: itemsText.replace(/\n/g, ' ') });
+
+            cart = [];
+            saveCartState();
+
+            window.location.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUM}&text=${encodeURIComponent(msg)}`;
+        }
+
+        // ======================== التنقل والنماذج الأخرى ========================
         function goToScreen(screenKey) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active-screen'));
-            document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
 
             const targetScreen = document.getElementById('screen-' + screenKey);
             const targetTab = document.getElementById('tab-' + screenKey);
             if (targetScreen) targetScreen.classList.add('active-screen');
             if (targetTab) targetTab.classList.add('active');
 
+            if (screenKey === 'cart') renderCartScreen();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function checkCategoryChange(catValue) {
-            const pSec = document.getElementById('prescriptionSection');
-            if (catValue.includes('علاج') || catValue.includes('أدوية') || catValue.includes('صيدلية')) {
-                pSec.style.display = 'block';
-            } else {
-                pSec.style.display = 'none';
-            }
+        function toggleMenu(menuId) {
+            const body = document.getElementById(menuId);
+            const isVisible = body.style.display === 'block';
+            document.querySelectorAll('.accordion-body').forEach(m => m.style.display = 'none');
+            body.style.display = isVisible ? 'none' : 'block';
         }
 
-        function selectCategoryAndOrder(categoryName) {
+        function openOtherStoreOrder(storeName, category) {
             goToScreen('order');
-            const selectBox = document.getElementById('selectedCat');
-            for (let i = 0; i < selectBox.options.length; i++) {
-                if (selectBox.options[i].text.includes(categoryName.substring(0, 4))) {
-                    selectBox.selectedIndex = i;
-                    break;
-                }
-            }
-            checkCategoryChange(selectBox.value);
-            document.getElementById('cDetails').value = `أوردر من قسم (${categoryName})\nالمطلوب: `;
-            document.getElementById('cDetails').focus();
+            document.getElementById('directOrderCat').value = category.includes('صيدلية') ? 'صيدلية وعلاج' : 'محلات وخدمات أخرى';
+            document.getElementById('directOrderPickup').value = storeName;
+            checkPrescriptionField(document.getElementById('directOrderCat').value);
+            const selectedStore = otherStoresData.find(st => st.name === storeName);
+            const listedItems = (selectedStore?.items || []).map(it => `- ${it.name}${it.price ? ` (${it.price} ج)` : ''}`).join('\n');
+            document.getElementById('directOrderDetails').value = `مطلوب من (${storeName}):\n${listedItems ? listedItems + '\n' : ''}- `;
+            document.getElementById('directOrderDetails').focus();
         }
 
-        function previewImage(input) {
+        function openPharmacyOrder(pharmacyName) {
+            goToScreen('order');
+            document.getElementById('directOrderCat').value = 'صيدلية وعلاج';
+            document.getElementById('directOrderPickup').value = pharmacyName;
+            checkPrescriptionField('صيدلية وعلاج');
+            if (pharmacyName) {
+                document.getElementById('directOrderDetails').value = `مطلوب من صيدلية (${pharmacyName}):\n- `;
+            } else {
+                document.getElementById('directOrderPickup').placeholder = 'اكتب اسم الصيدلية المطلوبة هنا...';
+                document.getElementById('directOrderDetails').value = 'الأدوية والطلبات المطلوبة:\n- ';
+                document.getElementById('directOrderPickup').focus();
+            }
+        }
+
+        function openDirectCustomOrder(catName, placeholder) {
+            goToScreen('order');
+            document.getElementById('directOrderCat').value = catName.includes('مشروبات') ? 'مشروبات وكافيهات' : 'طلب من مطعم';
+            document.getElementById('directOrderPickup').value = '';
+            document.getElementById('directOrderPickup').placeholder = placeholder;
+            checkPrescriptionField(document.getElementById('directOrderCat').value);
+            document.getElementById('directOrderDetails').value = '';
+            document.getElementById('directOrderPickup').focus();
+        }
+
+        function checkPrescriptionField(val) {
+            const box = document.getElementById('directPrescriptionBox');
+            box.style.display = val.includes('صيدلية') || val.includes('علاج') ? 'block' : 'none';
+        }
+
+        function handleRxImageUpload(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('previewImg').src = e.target.result;
-                    document.getElementById('previewBox').style.display = 'block';
-                    hasPrescriptionImage = true;
+                    const dataUrl = e.target.result;
+                    document.getElementById('directRxPreviewImg').src = dataUrl;
+                    document.getElementById('directRxPreview').style.display = 'block';
+                    hasDirectRxImage = true;
+
+                    const link = document.createElement('a');
+                    link.href = dataUrl;
+                    link.download = `روشتة-توصليتي-${Date.now()}.jpg`;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    showToast("تم حفظ صورة الروشتة في المعرض بجهازك بنجاح ✅");
                 }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
-        function removeImage() {
-            document.getElementById('prescriptionInput').value = "";
-            document.getElementById('previewBox').style.display = 'none';
-            hasPrescriptionImage = false;
-        }
-
-        function handleOrderSubmission(e) {
+        function handleDirectOrderSubmission(e) {
             e.preventDefault();
 
-            const cat = document.getElementById('selectedCat').value;
-            const name = document.getElementById('cName').value.trim();
-            const phone = document.getElementById('cPhone').value.trim();
-            const pickup = document.getElementById('cPickup').value.trim();
-            const drop = document.getElementById('cDrop').value.trim();
-            const details = document.getElementById('cDetails').value.trim();
+            const cat = document.getElementById('directOrderCat').value;
+            const pickup = document.getElementById('directOrderPickup').value.trim();
+            const name = document.getElementById('directCustName').value.trim();
+            const phone = document.getElementById('directCustPhone').value.trim();
+            const drop = document.getElementById('directCustDrop').value.trim();
+            const details = document.getElementById('directOrderDetails').value.trim();
 
-            let prescriptionNote = "";
-            if (hasPrescriptionImage) {
-                prescriptionNote = "\n📸 *الروشتة:* قام العميل بتصوير الروشتة وسيرسلها لك الآن في الشات!";
-            }
+            let rxNote = hasDirectRxImage ? "\n📸 *الروشتة: تم تصويرها وحفظها بالهاتف وسيرسلها العميل لك في الشات الآن!*" : "";
 
             const msg = 
-`🛵 *طلب أوردر جديد عبر تطبيق "توصليتي"*
-──────────────────
-🏷️ *القسم:* ${cat}${prescriptionNote}
-👤 *الاسم:* ${name}
-📱 *الهاتف:* ${phone}
-📍 *مكان الشراء/الاستلام:* ${pickup}
-🏁 *مكان التوصيل:* ${drop}
-📝 *محتوى الطلب بالتفصيل:*
+`🛵 *أوردر دليفري جديد - توصليتي*
+━━━━━━━━━━━━━━━━━━
+
+🏷️ *القسم:*
+${cat}
+
+📍 *مكان الشراء / الاستلام:*
+${pickup}
+
+👤 *اسم العميل:*
+${name}
+
+📱 *رقم الهاتف للتواصل:*
+${phone}
+
+🏁 *عنوان التوصيل:*
+${drop}
+
+📋 *الأصناف والمشتريات بالتفصيل:*
 ${details}
-──────────────────`;
+${rxNote}
 
-            generatedWhatsAppUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUM}&text=${encodeURIComponent(msg)}`;
+━━━━━━━━━━━━━━━━━━
+⏰ *يرجى التحرك والتأكيد فوراً*`;
 
-            if (hasPrescriptionImage) {
-                document.getElementById('prescriptionModal').style.display = 'flex';
-            } else {
-                window.location.href = generatedWhatsAppUrl;
+            saveOrderLogRecord({ date: new Date().toLocaleString('ar-EG'), name, phone, pickup, drop, details });
+            window.location.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUM}&text=${encodeURIComponent(msg)}`;
+        }
+
+        function filterCards(cat, btn) {
+            document.querySelectorAll('.capsule-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const cards = document.querySelectorAll('.modern-card[data-cat]');
+            cards.forEach(c => {
+                c.style.display = (cat === 'all' || c.getAttribute('data-cat') === cat) ? 'flex' : 'none';
+            });
+        }
+
+        // ======================== وظائف لوحة التحكم ========================
+        function switchAdminTab(tabKey, btn) {
+            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.admin-tab-content').forEach(c => c.style.display = 'none');
+            document.getElementById('admin-tab-' + tabKey).style.display = 'block';
+            if (tabKey === 'restaurants') loadRestaurantEditor();
+            if (tabKey === 'stores') refreshStoreItemsSelect();
+        }
+
+        function loadDashboardSettings() {
+            document.getElementById('adminWaInput').value = WHATSAPP_NUM;
+            document.getElementById('adminCallInput').value = CALL_NUM;
+            document.getElementById('adminEmailInput').value = auth.currentUser?.email || "";
+            document.getElementById('adminPasswordInput').value = "";
+            document.getElementById('adminPasswordInput').placeholder = "اتركها فارغة إذا لم ترد تغييرها";
+            renderOrdersLogList();
+            renderOtherStoresList();
+            refreshStoreItemsSelect();
+            renderRestaurantsList();
+        }
+
+        async function saveAdminCoreSettings() {
+            if (!isAuthorizedAdmin()) { alert("سجّل الدخول بحساب الإدارة أولاً."); return; }
+            const wa = document.getElementById('adminWaInput').value.trim();
+            const call = document.getElementById('adminCallInput').value.trim();
+            const em = document.getElementById('adminEmailInput').value.trim();
+            const pass = document.getElementById('adminPasswordInput').value;
+
+            try {
+                if (wa) WHATSAPP_NUM = wa;
+                if (call) CALL_NUM = call;
+                applySharedSettings({ whatsapp: WHATSAPP_NUM, call: CALL_NUM });
+
+                // تغيير بيانات الدخول يتم عبر Firebase Authentication وليس localStorage.
+                if (em && em !== auth.currentUser.email) {
+                    await auth.currentUser.updateEmail(em);
+                    ADMIN_EMAIL = em;
+                }
+                if (pass) {
+                    if (pass.length < 6) {
+                        alert("كلمة المرور الجديدة يجب أن تكون 6 أحرف على الأقل.");
+                        return;
+                    }
+                    await auth.currentUser.updatePassword(pass);
+                    document.getElementById('adminPasswordInput').value = "";
+                }
+                await persistSharedData();
+                alert("تم حفظ الإعدادات مركزيًا. بيانات دخول الإدارة تُدار بأمان عبر Firebase ✅");
+            } catch (error) {
+                console.error(error);
+                alert("تعذر حفظ الإعدادات أو تحديث بيانات الدخول. قد تحتاج إلى تسجيل الدخول مرة أخرى قبل تغيير البريد أو كلمة المرور.");
             }
         }
 
-        function proceedToWhatsApp() {
-            document.getElementById('prescriptionModal').style.display = 'none';
-            window.location.href = generatedWhatsAppUrl;
+        async function addFoodItemFromDashboard() {
+            const res=currentManagedRestaurant();
+            const name=document.getElementById('newFoodName').value.trim();
+            const price=document.getElementById('newFoodPrice').value.trim();
+            if(!res||!name||!price){alert('اختار المطعم واكتب اسم الصنف وسعره');return;}
+            await addRestaurantCategoryIfMissing(res);
+            let ci=Number(document.getElementById('restaurantCategorySelect')?.value||0);
+            if(!res.categories[ci])ci=0;
+            res.categories[ci].items.push({name,...parsePriceField(price)});
+            document.getElementById('newFoodName').value=''; document.getElementById('newFoodPrice').value='';
+            await saveRestaurantsAndRefresh();
         }
 
-        function quickWhatsAppChat() {
-            const msg = "مرحباً كابتن دليفري توصليتي، أريد الاستفسار عن خدمة التوصيل 🛵";
-            window.location.href = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUM}&text=${encodeURIComponent(msg)}`;
+        function resetRestaurantDataToDefault() {
+            if (confirm("هل تريد استعادة قوائم الطعام الأصلية للمطاعم السبعة؟")) {
+                localStorage.removeItem('deliv_restaurants');
+                activeRestaurants = JSON.parse(JSON.stringify(initialRestaurants));
+                renderRestaurantsList();
+                persistSharedData().then(() => alert("تمت استعادة قوائم الطعام وحفظها مركزيًا ✅"))
+                    .catch(() => alert("تمت الاستعادة محليًا لكن تعذر الحفظ المركزي."));
+            }
+        }
+
+        async function saveOrderLogRecord(data) {
+            // الطلبات الجديدة تُحفظ مركزيًا، ويسمح بها في القواعد للعميل دون السماح له بقراءتها.
+            try {
+                await ordersRef.add({ ...data, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+            } catch (error) {
+                console.error("Could not save order centrally:", error);
+                const logs = JSON.parse(localStorage.getItem('deliv_orders_log')) || [];
+                logs.unshift(data);
+                localStorage.setItem('deliv_orders_log', JSON.stringify(logs.slice(0, 50)));
+            }
+        }
+
+        let cachedRemoteOrders = [];
+        function renderOrdersLogList() {
+            const container = document.getElementById('adminOrdersLogContainer');
+            if (!container) return;
+            if (!isAuthorizedAdmin()) {
+                container.innerHTML = '<p style="color: var(--text-muted); font-size: 12px; text-align: center;">سجّل الدخول لعرض سجل الطلبات.</p>';
+                return;
+            }
+            if (cachedRemoteOrders.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); font-size: 12px; text-align: center;">لا توجد طلبات مسجلة بعد.</p>';
+                return;
+            }
+            container.innerHTML = cachedRemoteOrders.map(l => `
+                <div style="background: #f8fafc; border: 1px solid var(--border-light); padding: 10px; border-radius: 12px; font-size: 12px; margin-bottom: 8px;">
+                    <div style="font-weight: 800; color: var(--primary);">👤 ${escapeHtml(l.name)} - 📱 ${escapeHtml(l.phone)}</div>
+                    <div style="color: var(--text-muted);">📍 من: ${escapeHtml(l.pickup)} | إلى: ${escapeHtml(l.drop)}</div>
+                    <div style="margin-top: 4px; font-weight: 700;">📋 ${escapeHtml(l.details)}</div>
+                    <div style="font-size: 10px; color: #94a3b8; text-align: left; margin-top: 2px;">🕒 ${escapeHtml(l.date)}</div>
+                </div>
+            `).join('');
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+        }
+
+        function subscribeOrders() {
+            if (!isAuthorizedAdmin()) return;
+            ordersRef.orderBy('createdAt', 'desc').limit(50).onSnapshot(snapshot => {
+                cachedRemoteOrders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                renderOrdersLogList();
+            }, error => {
+                console.error(error);
+                showToast("تعذر تحميل سجل الطلبات؛ راجع قواعد Firestore.");
+            });
+        }
+
+        async function clearOrdersLog() {
+            if (!isAuthorizedAdmin()) { alert("سجّل الدخول بحساب الإدارة أولاً."); return; }
+            if (confirm("هل أنت متأكد من مسح سجل الطلبات المركزي من جميع الأجهزة؟")) {
+                try {
+                    const snap = await ordersRef.limit(50).get();
+                    const batch = db.batch();
+                    snap.docs.forEach(doc => batch.delete(doc.ref));
+                    await batch.commit();
+                    cachedRemoteOrders = [];
+                    renderOrdersLogList();
+                } catch (error) {
+                    console.error(error);
+                    alert("تعذر مسح السجل. راجع قواعد Firestore.");
+                }
+            }
         }
     </script>
 </body>
 </html>
+```
+4m4.8s
